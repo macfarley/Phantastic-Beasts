@@ -6,13 +6,12 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
-
+const zipcodes = require('zipcodes');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
-
+//mongoose connection information
 mongoose.connect(process.env.MONGODB_URI);
-
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
@@ -23,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
-
+//session keeps the user logged in
 app.use(
     session({
       secret: process.env.SESSION_SECRET,
@@ -31,25 +30,33 @@ app.use(
       saveUninitialized: true,
     })
   );
+//public folder holds stylesheets and images
+app.use(express.static("public"));
 
+//controller variables
 const authController = require("./controllers/auth.js");
-app.use("/auth", authController);
-
+const userController = require('./controllers/user.js');
+const creatureController = require('./controllers/creature.js');
+const locationController = require('./controllers/location.js')
 
 // RESTful routes for the app
-// GET Landing page
+// GET Home page
 app.get("/", async (req, res) => {
-    res.render("index.ejs", {
+    res.render("home.ejs", {
         user: req.session.user,
-    });  });
+      });
+  });
 
-app.get("/vip-lounge", async (req, res) => {
-    if (req.session.user) {
-        res.send("Welcome to the VIP Lounge!")
-    } else {
-        res.send("access-denied");
-    }
-});
+//route through auth controller for sign in or sign up
+app.use("/auth", authController);
+//route through user controller for user-related actions
+app.use("/users", userController); //
+//route through creature controller
+app.use("/creatures", creatureController);
+//route through location controller
+app.use("/locations", locationController);
+
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
