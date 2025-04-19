@@ -13,8 +13,10 @@
     "cookie": "^0.7.2",
     "debug": "^4.4.0",
     "depd": "^2.0.0",
+    "dotenv": "^16.5.0",
     "ee-first": "^1.1.1",
     "encodeurl": "^2.0.0",
+    "express": "^5.1.0",
     "express-session": "^1.18.1",
     "finalhandler": "^2.1.0",
     "fresh": "^2.0.0",
@@ -27,6 +29,7 @@
     "kareem": "^2.6.3",
     "memory-pager": "^1.5.0",
     "minimatch": "^3.1.2",
+    "mongoose": "^8.13.2",
     "mquery": "^5.0.0",
     "negotiator": "^1.0.0",
     "once": "^1.4.0",
@@ -44,9 +47,9 @@
     "supports-color": "^7.2.0",
     "tar": "^6.2.1",
     "whatwg-url": "^14.2.0",
-    "wide-align": "^1.1.5"
+    "wide-align": "^1.1.5",
+    "zipcodes": "^8.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
