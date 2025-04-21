@@ -11,7 +11,8 @@ const zipcodes = require('zipcodes');
 const authController = require("./controllers/auth.js");
 const userController = require('./controllers/user.js');
 const creatureController = require('./controllers/creature.js');
-const locationController = require('./controllers/location.js')
+const locationController = require('./controllers/location.js');
+const isSignedIn = require("./middleware/is-signed-in.js");
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 //mongoose connection information
@@ -39,7 +40,6 @@ app.use(
 //this middleware imports a user variable to ejs views
 app.use(passUserToView);
 
-
 // RESTful routes for the app
 // GET Home page
 app.get("/", async (req, res) => {
@@ -53,7 +53,7 @@ app.use("/auth", authController);
 //route through location controller
 app.use("/locations", locationController);
 //unless signed in users can't see the rest of the site
-app.use(passUserToView)
+app.use(isSignedIn)
 
 //route through user controller for user-related actions
 app.use("/users", userController);
