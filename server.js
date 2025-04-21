@@ -51,13 +51,13 @@ app.get("/", async (req, res) => {
 app.use("/auth", authController);
 //route through user controller for user-related actions
 app.use("/users", userController); //
-//route through creature controller
+//route through creature controller for Beastiary and Species show page
 app.use("/creatures", creatureController);
 //route through location controller
 app.use("/locations", locationController);
 
 
-
+//server connection port
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
