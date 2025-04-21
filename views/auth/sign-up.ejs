@@ -14,16 +14,16 @@
         <input type="text" name="username" id="username" required />
         
         
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required />
+        <label for="password">Password (at least 12 characters, no spaces):</label>
+        <input type="password" name="password" id="password" minlength="12" pattern="^\S+$" required />
         
-        <label for="confirmPassword">Confirm Password:</label>
+        <label for="confirmPassword">Confirm Password (must match):</label>
         <input type="password" name="confirmPassword" id="confirmPassword" required />
-        <label for="zipcode">Zip Code:</label>
-        <input type="text" name="zipcode" id="zipcode" maxlength="5" required />
+        <label for="zipCode">Zip Code:</label>
+        <input type="text" name="zipcode" id="zipCode" maxlength="5" required />
 
         <script>
-          document.getElementById('zipcode').addEventListener('input', async function () {
+          document.getElementById('zipCode').addEventListener('input', async function () {
             const zip = this.value;
             if (zip.length === 5) {
               try {

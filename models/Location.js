@@ -12,7 +12,8 @@ const LocationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-    }
+    },
+    zipCode: { type: String, required: true }
 });
 
 const Location = mongoose.model('Location', LocationSchema);

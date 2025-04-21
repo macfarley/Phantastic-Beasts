@@ -18,15 +18,25 @@ router.post("/sign-up", async (req, res) => {
       }
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
-    // Create a new user in the database
+
+    //if they check the admin box in user creation set their role to admin
+    if (req.body.isAdmin) {
+        req.body.role = "admin";
+    }
+    //if the location isn't already in the database create the entry now
+    const location = await Location.findOneAndUpdate(
+      { name: req.body.hometown },
+      { upsert: true, new: true }
+    );
+    req.body.hometown = location._id;
+        // Create a new user in the database
     const user = await User.create(req.body);
-    res.send(`Thanks for signing up ${user.username}`);
-    
-    
+    res.send(`Thanks for signing up ${user.username}, please wait while we send you to our homepage`);
+    res.redirect("/");
   });
 // Sign-in route
 router.get("/sign-in", (req, res) => {
-    res.render("auth/sign-in.ejs");
+    res.render("/auth/sign-in.ejs");
   }
 );
 
@@ -48,14 +58,16 @@ router.post("/sign-in", async (req, res) => {
         return res.status(401).send("Login Failed.");
     }
   // There is a user AND they had the correct password. Time to make a session!
-  // Avoid storing the password, even in hashed format, in the session
-  // If there is other data you want to save to `req.session.user`, do so here!
+
   req.session.user = {
     username: userInDatabase.username,
     _id: userInDatabase._id
   };
 
-  res.redirect("/");
+
+  console.log(`User logged in: ${userInDatabase.username}`);
+
+  res.redirect("../users/");
 });
 
 router.get("/sign-out", (req, res) => {

@@ -13,15 +13,10 @@ const sightingSchema = new mongoose.Schema({
     ref: "Location",
     required: true,
   },
-  size: {
-    type: String,
-    required: true,
-    enum: ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"], // Restrict size to specific options
-  },
   encounter: {
     type: String,
     required: true,
-    enum: ["spotted", "ran away", "negotiated", "battled"], // Restrict encounter to specific options
+    enum: ["Spotted", "Ran Away", "Negotiated", "Battled but Escaped", "Vanquished Creature", "Entry Ends.  This journal was found on a dead adventurer."], // Restrict encounter to specific options
   },
 });
 

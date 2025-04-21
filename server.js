@@ -9,9 +9,9 @@ const session = require('express-session');
 const zipcodes = require('zipcodes');
 //controller variables
 const authController = require("./controllers/auth.js");
-const userController = require('./controllers/user.js');
-const creatureController = require('./controllers/creature.js');
-const locationController = require('./controllers/location.js');
+const userController = require('./controllers/users.js');
+const creatureController = require('./controllers/creatures.js');
+const locationController = require('./controllers/locations.js');
 const isSignedIn = require("./middleware/is-signed-in.js");
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
