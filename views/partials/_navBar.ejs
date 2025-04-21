@@ -1,0 +1,17 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/indexMap">Index Map</a></li>
+        <% if (!user) { %>
+            <li><a href="/sign-in">Sign In</a></li>
+            <li><a href="/sign-up">Sign Up</a></li>
+        <% } %>
+        <% if (user) { %>
+            <li><a href="/indexBeastiary">Index Beastiary</a></li>
+            <li><a href="/sign-out">Sign Out</a></li>
+        <% } %>
+        <% if (user && user.isAdmin) { %>
+            <li><a href="/indexUsers">Index Users</a></li>
+        <% } %>
+    </ul>
+</nav>

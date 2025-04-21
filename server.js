@@ -7,7 +7,11 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
 const zipcodes = require('zipcodes');
-
+//controller variables
+const authController = require("./controllers/auth.js");
+const userController = require('./controllers/user.js');
+const creatureController = require('./controllers/creature.js');
+const locationController = require('./controllers/location.js')
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 //mongoose connection information
@@ -15,6 +19,8 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+// public folder for stylesheets and images
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
@@ -30,14 +36,9 @@ app.use(
       saveUninitialized: true,
     })
   );
-//public folder holds stylesheets and images
-app.use(express.static("public"));
+//this middleware imports a user variable to ejs views
+app.use(passUserToView);
 
-//controller variables
-const authController = require("./controllers/auth.js");
-const userController = require('./controllers/user.js');
-const creatureController = require('./controllers/creature.js');
-const locationController = require('./controllers/location.js')
 
 // RESTful routes for the app
 // GET Home page
@@ -49,12 +50,15 @@ app.get("/", async (req, res) => {
 
 //route through auth controller for sign in or sign up
 app.use("/auth", authController);
-//route through user controller for user-related actions
-app.use("/users", userController); //
-//route through creature controller for Beastiary and Species show page
-app.use("/creatures", creatureController);
 //route through location controller
 app.use("/locations", locationController);
+//unless signed in users can't see the rest of the site
+app.use(passUserToView)
+
+//route through user controller for user-related actions
+app.use("/users", userController);
+//route through creature controller for Beastiary and Species show page
+app.use("/creatures", creatureController);
 
 
 //server connection port
