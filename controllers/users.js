@@ -1,6 +1,6 @@
 const express = require("express");
-const User = require("../models/User");
 const router = express.Router();
+const User = require("../models/User");
 
 // RESTful Routes
 // Upon login, users are directed to their respective pages based on their roles.

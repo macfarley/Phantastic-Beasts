@@ -3,16 +3,18 @@ dotenv.config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require("path")
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
 const zipcodes = require('zipcodes');
 //controller variables
-const authController = require("./controllers/auth.js");
-const userController = require('./controllers/users.js');
-const creatureController = require('./controllers/creatures.js');
-const locationController = require('./controllers/locations.js');
+const authController = require('./controllers/auth.js');
+let userController;
+let creatureController;
+let locationController;
 const isSignedIn = require("./middleware/is-signed-in.js");
+const passUserToView = require("./middleware/pass-user-to-view.js")
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 //mongoose connection information
@@ -49,16 +51,24 @@ app.get("/", async (req, res) => {
   });
 
 //route through auth controller for sign in or sign up
-app.use("/auth", authController);
+app.use("/auth", (req, res, next) => {
+  authController(req, res, next);
+});
 //route through location controller
-app.use("/locations", locationController);
+app.use("/locations", (req, res, next) => {
+  locationController(req, res, next);
+});
 //unless signed in users can't see the rest of the site
 app.use(isSignedIn)
 
 //route through user controller for user-related actions
-app.use("/users", userController);
+app.use("/users", (req, res, next) => {
+  userController(req, res, next);
+});
 //route through creature controller for Beastiary and Species show page
-app.use("/creatures", creatureController);
+app.use("/creatures", (req, res, next) => {
+  creatureController(req, res, next);
+});
 
 
 //server connection port
