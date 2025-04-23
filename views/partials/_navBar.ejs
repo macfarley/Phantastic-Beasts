@@ -1,17 +1,17 @@
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/indexMap">Index Map</a></li>
-        <% if (!user) { %>
-            <li><a href="/auth/sign-in">Sign In</a></li>
-            <li><a href="/auth/sign-up">Sign Up</a></li>
-        <% } %>
-        <% if (user) { %>
-            <li><a href="/creatures/">Index Beastiary</a></li>
-            <li><a href="/auth/sign-out">Sign Out</a></li>
-        <% } %>
-        <% if (user && user.isAdmin) { %>
-            <li><a href="/indexUsers">Index Users</a></li>
-        <% } %>
+<section class="top-nav">
+    <div>
+      Logo Here
+    </div>
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+    <div class='menu-button'></div>
+  </label>
+    <ul class="menu">
+      <li><a class="nav-item" href="/">Home</a></li>
+      <li><a class="nav-item" href="/locations">Locations</a></li>
+      <li><a class="nav-item" href="/creatures/">Beastiary</a></li>
+      <li><a class="nav-item" href="/auth/sign-up">Sign Up</a></li>
+      <li><a class="nav-item" href="/auth/sign-in">Sign In</a></li>
+      <li><a class="nav-item" href="/auth/sign-out">Sign Out</a></li>
     </ul>
-</nav>
+  </section>

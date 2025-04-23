@@ -2,15 +2,24 @@
     <title>Phantasitic Beasts Home</title>
   </head>
   <body>
-    <%- include('./partials/_navBar') %>
-    <% if (user) { %>
-        <h1>Welcome to the app, <%= user.username %>!</h1>    
-        <% } else { %>
-        <h1>Welcome to the app, Guest.</h1>
-        <p>
-          <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a>.
-        </p>
-        <% } %>
-        
+  <header>
+    <img src="/images/icons8-phoenix.png" alt="phoenix logo">
+    <h1>Phantasitic Beasts</h1>
+    <nav><%- include('./partials/_navBar') %></nav>
+  </header>
+    <main>
+        <article>
+          <h2>Welcome to the world of Phantastic Beasts, and Where We Found Them.</h2>
+            <p>Explore the world of magical creatures, and let others know where you saw them.
+                You are currently logged in as 
+                <% if (session.user) { %>
+                  <a href="/users/<%= session.user.username %>"><%= session.user.name %></a>
+                <% } else { %>
+                  Guest
+                <% } %>.  
+                Only registered Explorer's Guild members can view the Beastiary and contribute their own stories. Currently, Guests can only view the <a href="/locations">Locations list</a>.
+            </p>
+        </article>  
+      </main>
   </body>
 </html>

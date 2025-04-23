@@ -46,6 +46,7 @@ app.use(passUserToView);
 // GET Home page
 app.get("/", async (req, res) => {
     res.render("indexHome.ejs", {
+        session,
         user: req.session.user,
       });
   });
