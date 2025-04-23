@@ -1,24 +1,8 @@
 const mongoose = require("mongoose");
 const Location = require("./Location.js");
-const Creature = require('./Creature.js')
+const Sighting = require('./Sighting.js')
 
-const sightingSchema = new mongoose.Schema({
-  creature: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Creature",
-    required: true,
-  },
-  location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Location",
-    required: true,
-  },
-  encounter: {
-    type: String,
-    required: true,
-    enum: ["Spotted", "Ran Away", "Negotiated", "Battled but Escaped", "Vanquished Creature", "Entry Ends.  This journal was found on a dead adventurer."], // Restrict encounter to specific options
-  },
-});
+
 
 const userSchema = new mongoose.Schema({ 
   name: { type: String, required: true },
@@ -36,11 +20,19 @@ const userSchema = new mongoose.Schema({
     enum: ["user", "admin"], // Restrict role to "user" or "admin"
     default: "user" // Default role is "user"
   },
+  class: {
+    type: String,
+    required: true,
+    enum: ["Bard", "Barbarian", "Druid", "Ranger", "Wizard"] // Restrict class to specific values
+  },
   homeTown: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Location", // Reference the Location model
   },
-  sightings: [sightingSchema],
+  sightings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Sighting" // Reference the Sighting model
+  }],
 });
 
 const User = mongoose.model("User", userSchema);

@@ -1,55 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-  </head>
+  <%- include('../partials/_header') %>
+  <title>Sign Up</title>
+</head>
   <body>
     <%- include('../partials/_navBar') %>
 
     <h1>Register with the Guild to see the Beastiary</h1>
     <form action="/auth/sign-up" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required />
-        
-        
-        <label for="password">Password (at least 12 characters, no spaces):</label>
-        <input type="password" name="password" id="password" minlength="12" pattern="^\S+$" required />
-        
-        <label for="confirmPassword">Confirm Password (must match):</label>
-        <input type="password" name="confirmPassword" id="confirmPassword" required />
-        <label for="zipCode">Zip Code:</label>
-        <input type="text" name="zipcode" id="zipCode" maxlength="5" required />
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" required />
 
-        <script>
-          document.getElementById('zipCode').addEventListener('input', async function () {
-            const zip = this.value;
-            if (zip.length === 5) {
-              try {
-                const response = await fetch(`/api/zipcode/${zip}`);
-                if (response.ok) {
-                  const data = await response.json();
-                  document.getElementById('hometown').value = data.city || '';
-                  document.getElementById('kingdom').value = data.state || '';
-                } else {
-                  console.error('Invalid ZIP code');
-                }
-              } catch (error) {
-                console.error('Error fetching ZIP code data:', error);
-              }
-            }
-          });
-        </script>
+      <label for="password">Password (at least 12 characters, no spaces):</label>
+      <input type="password" name="password" id="password" minlength="12" pattern="^\S+$" required />
 
-        <label for="kingdom">Kingdom (State):</label>
-        <input type="text" name="kingdom" id="kingdom" readonly />
-        <label for="hometown">Hometown:</label>
-        <input type="text" name="hometown" id="hometown" />
-                
-        <label for="admin">Admin?:</label>
-        <input type="checkbox" name="admin" id="admin" />
-        <button type="submit">Register</button>
+      <label for="confirmPassword">Confirm Password (must match):</label>
+      <input type="password" name="confirmPassword" id="confirmPassword" required />
+
+      <label for="City">Hometown (City):</label>
+      <select name="City" id="hometown" required>
+
+      <label for="kingdom">Kingdom (State):</label>
+      <select name="kingdom" id="kingdom" required>
+        <% Location.schema.path('kingdom').enumValues.forEach(function(kingdom) { %>
+          <option value="<%= kingdom %>"><%= kingdom %></option>
+        <% }); %>
+      </select>
+
+      <label for="admin">Admin?:</label>
+      <input type="checkbox" name="admin" id="admin" />
+      
+      <button type="submit">Register</button>
     </form>
   </body>
 </html>

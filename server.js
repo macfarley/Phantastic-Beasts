@@ -7,7 +7,7 @@ const path = require("path")
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
-const zipcodes = require('zipcodes');
+
 //controller variables
 const authController = require('./controllers/auth.js');
 let userController;
@@ -45,7 +45,7 @@ app.use(passUserToView);
 // RESTful routes for the app
 // GET Home page
 app.get("/", async (req, res) => {
-    res.render("home.ejs", {
+    res.render("indexHome.ejs", {
         user: req.session.user,
       });
   });

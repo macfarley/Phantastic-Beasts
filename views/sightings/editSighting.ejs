@@ -1,0 +1,68 @@
+<%- include('../partials/_header') %>
+    <title>Edit Sighting</title>
+</head>
+<body>
+    <%- include('../partials/_navBar') %>
+    <main>
+        <h1>Edit this Sighting</h1>
+        
+        <form action="/sightings" method="POST">
+            <div>
+                <label for="date">Date of Sighting:</label>
+                <input type="date" id="date" name="date" value="<%= new Date().toISOString().split('T')[0] %>" required>
+            </div>
+            <div>
+                <label for="name">Creature Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div>
+                <label for="habitat">Habitat:</label>
+                <select id="habitat" name="habitat" required>
+                    <option value="forest">Forest</option>
+                    <option value="mountain">Mountain</option>
+                    <option value="swamp">Swamp</option>
+                    <option value="desert">Desert</option>
+                    <option value="ocean">Ocean</option>
+                    <option value="plains">Plains</option>
+                    <option value="urban">Urban</option>
+                </select>
+            </div>
+            <div>
+                <label for="size">Size:</label>
+                <select id="size" name="size" required>
+                    <option value="tiny">Tiny</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="huge">Huge</option>
+                    <option value="gargantuan">Gargantuan</option>
+                </select>
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" id="location" name="city" required>
+            </div>
+            <div>
+                <label for="kingdom">Kingdom (State):</label>
+                <input type="text" id="kingdom" name="kingdom" required>
+            </div>
+            <div>
+                <label for="encounter">Type of Encounter:</label>
+                <select id="encounter" name="encounter" required>
+                    <option value="spotted">Spotted without engagement.</option>
+                    <option value="fled">The monster got away.</option>
+                    <option value="parlay">Negotiated with the monster.</option>
+                    <option value="battle">Killed the monster.</option>
+                    <option value="disaster">Encounter resulted in a disaster.  Book transported back to headquarters covered in blood.</option>
+                </select>
+            </div>
+            <div>
+                <label for="notes">Tell the Tale:</label>
+                <textarea id="notes" name="notes" rows="4" ></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+</html>

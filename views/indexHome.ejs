@@ -1,0 +1,16 @@
+<%- include('./partials/_header') %>
+    <title>Phantasitic Beasts Home</title>
+  </head>
+  <body>
+    <%- include('./partials/_navBar') %>
+    <% if (user) { %>
+        <h1>Welcome to the app, <%= user.username %>!</h1>    
+        <% } else { %>
+        <h1>Welcome to the app, Guest.</h1>
+        <p>
+          <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a>.
+        </p>
+        <% } %>
+        
+  </body>
+</html>
