@@ -29,8 +29,8 @@ html, body {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 2vh;
     border-radius: 8px;
-    width: 40vw;
-    height: auto;
+    width: fit-content;
+    height: fit-content;
     margin: 5vh;
     text-align: left;
     font-size: calc(1vw + 1vh);
@@ -56,6 +56,13 @@ html, body {
   color: #FFF;
   height: 50px;
   padding: 1em;
+}
+label {display:block;}
+textarea { display:block;}
+.textbox { 
+  padding: 5%;
+  width: 90%;
+  
 }
 footer{
   background-color: rgba(255, 255, 255, 0.7);

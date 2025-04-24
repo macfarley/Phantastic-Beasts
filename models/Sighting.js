@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const sightingSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
     date: {
         type: Date,
         required: true,
@@ -18,7 +23,7 @@ const sightingSchema = new mongoose.Schema({
     encounter: {
         type: String,
         required: false,
-        enum: ["Spotted", "Ran Away", "Negotiated", "Battled but Escaped", "Vanquished Creature", "Entry Ends.  This journal was found on a dead adventurer."], // Restrict encounter to specific options
+        enum: ["spotted", "fled", "parlay", "vanquished", "died"],
     },
     notes: {
         type: String,

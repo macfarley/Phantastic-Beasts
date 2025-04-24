@@ -11,15 +11,21 @@ const creatureSchema = new mongoose.Schema({
     enum: ["Constructs", "Dragonkin", "Eldritch Horror", "Magical Beast", "Outsider", "Plants", "Undead"], // Restrict category to specific options in alphabetical order
   },
   size: {
-    type: String,
+    type: [String],
     required: true,
     enum: ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"], // Restrict size to specific options
   },
   habitat: {
-    type: String,
+    type: [String],
     required: true,
     enum: ["Coastal", "Desert", "Forest", "Grassland", "Hills", "Mountains", "Ocean", "Swamp", "Underground", "Urban"], // Restrict habitat to specific options in alphabetical order
   },
+  sightings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Sighting",
+    },
+  ],
 });
 
 const Creature = mongoose.model("Creature", creatureSchema);

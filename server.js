@@ -15,6 +15,8 @@ const passUserToView = require("./middleware/pass-user-to-view.js")
 const userController = require('./controllers/users.js');
 const creatureController = require('./controllers/creatures.js');
 const locationController = require('./controllers/locations.js');
+const sightingController = require('./controllers/sightings.js');
+
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 //mongoose connection information
@@ -64,10 +66,13 @@ app.use("/locations", (req, res, next) => {
 });
 //unless signed in users can't see the rest of the site
 app.use(isSignedIn)
-
 //route through user controller for user-related actions
 app.use("/users", (req, res, next) => {
   userController(req, res, next);
+});
+//route through sightings controller to add, edit delete sightings from user
+app.use("/sightings", (req, res, next) => {
+  sightingController(req, res, next);
 });
 //route through creature controller for Beastiary and Species show page
 app.use("/creatures", (req, res, next) => {
