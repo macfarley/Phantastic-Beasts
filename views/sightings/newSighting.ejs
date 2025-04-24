@@ -4,7 +4,7 @@
 <body>
     <%- include('../partials/_navBar') %>
     <main>
-        <h1>Report a New Sighting</h1>
+        <h1>Report a New Sighting for <%= user %></h1>
         <form action="/sightings" method="POST">
             <div>
                 <label for="date">Date of Sighting:</label>

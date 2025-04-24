@@ -45,8 +45,10 @@ router.post("/sign-up", async (req, res) => {
       ...req.body // Assuming req.body contains other fields matching the Location schema
       });
     }
-    req.body.hometown = location
+    req.body.homeTown = location;
     const user = await User.create(req.body);
+    location.homeOf.push(user._id);
+    await location.save();
     res.redirect("/");
   });
 // Sign-in route

@@ -2,22 +2,52 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const Sighting = require("../models/Sighting");
+const Location = require('../models/Location');
+const Creature = require("../models/Creature");
+const { format } = require("date-fns");
+const { ordinal } = require("date-fns-tz");
+const session = require('express-session')
+
 
 // RESTful Routes
 // Upon login, users are directed to their respective pages based on their roles.
 // route to a user's list of sightings
 router.get("/:username", async (req, res) => {
-    const username = req.params.username;
+    const username = req.params.username;    
     try {
         const foundUser = await User.findOne({ username: username });
         if (!foundUser) {
             return res.status(404).send("User not found");
         }
-        console.log(foundUser);
-        res.render(`users/showUser.ejs`, { user: foundUser });
+    //fetch the user's hometown 
+        const hometown = await Location.findById(foundUser.homeTown);
+        var city = hometown ? hometown.city : "Unknown City";
+        var kingdom = hometown ? hometown.kingdom : "Unknown Kingdom";
+    //fetch all the user's sightings
+        let sightings = await Sighting.find({ _id: { $in: foundUser.sightings } });
+        if (!sightings.length) {
+            sightings = "This explorer has not recorded any sightings yet.";
+        }else {
+    //store creatures in sightings in an array
+        var creatures = [];
+        for (const sighting of sightings) {
+            const creature = await Creature.findById(sighting.creature);
+            if (creature) {
+            creatures.push(creature);
+            }
+        }
+        //store dates of sightings
+        var dates = sightings.map(sighting => {
+            const date = new Date(sighting.date);
+            const day = ordinal(date.getDate());
+            const formattedDate = format(date, `MMMM ${day}, yyyy`);
+            return formattedDate;
+        });}
+    //render the showUser page 
+    res.render("users/showUser.ejs", {session, user: foundUser, sightings: sightings, city: city, kingdom: kingdom, creature: creatures, date: dates });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("An error occurred while processing your request.");
     }
 });
 //fetch a form page to edit sighting

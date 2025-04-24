@@ -1,10 +1,33 @@
 <%- include('../partials/_header') %>
-    <title>User Details</title>
+    <title><%= user.username %>'s Profile</title>
 </head>
 <body>
     <%- include('../partials/_navBar') %>
+    <main class="overImage">
+    <article>
+        <% if (session.user && session.user.username === user.username) { %>
+            <h1>This is your personal page, <%= user.username %></h1>
+        <% } else { %>
+            <h1><%= user.username %></h1>
+        <% } %>
+        <p><strong>Class:</strong> <%= user.class %></p>
+        <p><strong>Hometown:</strong> <%= city %></p>
+        <p><strong>Kingdom:</strong> <%= kingdom %></p>
+    </article>
+    <article>
+        <% if (typeof sightings === 'string') { %>
+            <p><%= sightings %></p>
+        <% } else if (Array.isArray(sightings) && sightings.length > 0) { %>
+            <h2>Sightings</h2>
+            <% for (let i = 0; i < sightings.length; i++) { %>
+            <div>
+            <p><strong>Creature:</strong> <%= creature[i].name %></p>
+            <p><strong>Date Added:</strong> <%= date[i] %></p>
+            </div>
+            <% } %>
+        <% } %>
+        <button onclick="location.href='/sightings/new'" class="btn btn-primary">Add a New Sighting</button>
+    </article>
 
-    <h1>User Details</h1>
-    <p>Here you can view the details of a specific user.</p>
-</body>
-</html>
+    </main>
+<%- include('../partials/_footer') %>

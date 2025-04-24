@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
   homeTown: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Location", // Reference the Location model
+    required: true
   },
   sightings: [{
     type: mongoose.Schema.Types.ObjectId,

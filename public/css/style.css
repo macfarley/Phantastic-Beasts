@@ -7,6 +7,9 @@ h2 {
 html, body {
   margin: 0;
   height: 100%;
+  background-image: url('/images/background.jpeg');
+  background-size: cover;
+  background-position: center;
 }
 
 * {
@@ -14,20 +17,28 @@ html, body {
   box-sizing: border-box;
 }
 .overImage {
-  background-image: url('/images/background.jpeg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 .overImage article {
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 1em;
+    padding: 2vh;
     border-radius: 8px;
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
+    width: 40vw;
+    height: auto;
+    margin: 5vh;
+    text-align: left;
+    font-size: calc(1vw + 1vh);
     display: flex;
     flex-direction: column;
+    @media (max-width: 600px) {
+      width: 80vw;
+    }
 }
 .separate{
     text-align: left;
@@ -46,7 +57,14 @@ html, body {
   height: 50px;
   padding: 1em;
 }
-
+footer{
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1em;
+  border-radius: 8px;
+  width: 90vw;
+  margin: 5vh;
+  font-size: x-small;
+}
 .menu {
   display: flex;
   flex-direction: row;
