@@ -10,11 +10,11 @@ const session = require('express-session');
 
 //controller variables
 const authController = require('./controllers/auth.js');
-let userController;
-let creatureController;
-let locationController;
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js")
+const userController = require('./controllers/users.js');
+const creatureController = require('./controllers/creatures.js');
+const locationController = require('./controllers/locations.js');
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 //mongoose connection information

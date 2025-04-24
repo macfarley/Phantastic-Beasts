@@ -2,11 +2,22 @@
     <title>Map Index</title>
 </head>
 <body>
-    <%- include('../partials/_navBar') %>
-
-    <h1>Map Index</h1>
-    <p>Explore the map to find various locations.</p>
-    
+    <nav><%- include('../partials/_navBar') %></nav>
+    <main class="overImage">
+        <article>
+            <p>As our explorers discover new locations, we document their findings.</p>
+            <% locations.forEach(location => { %>
+                <% if (location.cities && location.cities.length > 0) { %>
+                    <h2><%= location.kingdom %></h2>
+                    <% location.cities.forEach(city => { %>
+                        <%= location.sightings
+                            .filter(sighting => sighting.city === city)
+                            .sort((a, b) => new Date(b.date) - new Date(a.date))[0]?.creature || 'No sightings' %></p>
+                    <% }) %>
+                <% } %>
+            <% }) %>
+        </article>
+    </main>
     
 </body>
 </html>

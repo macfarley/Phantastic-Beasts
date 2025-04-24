@@ -3,11 +3,9 @@
   </head>
   <body>
   <header>
-    <img src="/images/icons8-phoenix.png" alt="phoenix logo">
-    <h1>Phantasitic Beasts</h1>
     <nav><%- include('./partials/_navBar') %></nav>
   </header>
-    <main>
+    <main class="overImage">
         <article>
           <h2>Welcome to the world of Phantastic Beasts, and Where We Found Them.</h2>
             <p>Explore the world of magical creatures, and let others know where you saw them.
@@ -17,9 +15,10 @@
                 <% } else { %>
                   Guest
                 <% } %>.  
-                Only registered Explorer's Guild members can view the Beastiary and contribute their own stories. Currently, Guests can only view the <a href="/locations">Locations list</a>.
+                <p>Only registered Explorer's Guild members can view the Beastiary and contribute their own stories. Currently, Guests can only view the <a href="/locations">Locations</a> list.</p>
+                <p>Please <a href="/auth/sign-in">Log In</a> or <a href="/auth/sign-up">Register</a> so you can join in the fun!</p>
             </p>
-        </article>  
+        </article>
       </main>
   </body>
 </html>
