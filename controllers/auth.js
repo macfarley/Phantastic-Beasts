@@ -6,9 +6,11 @@ const bcrypt = require("bcrypt");
 
 //RESTful routes
 //get sign up page
-router.get("/sign-up", (req, res) => {
-    res.render("auth/sign-up.ejs");
-  });
+router.get("/sign-up", async (req, res) => {
+  const users = await User.find({});
+  const locations = await Location.find({});
+  res.render("auth/sign-up.ejs", { users, locations });
+});
 
 //post sign-up form
 router.post("/sign-up", async (req, res) => {
@@ -45,10 +47,7 @@ router.post("/sign-up", async (req, res) => {
     }
     req.body.hometown = location
     const user = await User.create(req.body);
-    res.send(`Thanks for signing up ${user.username}, please wait while we send you to our homepage`);
-    setTimeout(() => {
-      res.redirect("../");
-    }, 5000);
+    res.redirect("/");
   });
 // Sign-in route
 router.get("/sign-in", (req, res) => {

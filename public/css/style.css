@@ -26,6 +26,13 @@ html, body {
     max-width: 600px;
     margin: auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.separate{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
 }
 .top-nav {
   display: flex;

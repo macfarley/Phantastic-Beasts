@@ -6,13 +6,19 @@ const Sighting = require("../models/Sighting");
 // RESTful Routes
 // Upon login, users are directed to their respective pages based on their roles.
 // route to a user's list of sightings
-router.get("/:username", (req, res) => {
-User.findOne({ username: req.params.username }, (err, foundUser) => {
-    if (err || !foundUser) {
-        return res.status(404).send("User not found");
+router.get("/:username", async (req, res) => {
+    const username = req.params.username;
+    try {
+        const foundUser = await User.findOne({ username: username });
+        if (!foundUser) {
+            return res.status(404).send("User not found");
+        }
+        console.log(foundUser);
+        res.render(`/users/${foundUser.username}`, { user: foundUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
-    res.render("users/showUser.ejs", { user: foundUser });
-});
 });
 //fetch a form page to edit sighting
 router.get('/:username/:sightingId/edit', (req, res) => {
