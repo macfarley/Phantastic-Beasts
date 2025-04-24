@@ -18,7 +18,7 @@ const creatureSchema = new mongoose.Schema({
   habitat: {
     type: [String],
     required: true,
-    enum: ["Coastal", "Desert", "Forest", "Grassland", "Hills", "Mountains", "Ocean", "Swamp", "Underground", "Urban"], // Restrict habitat to specific options in alphabetical order
+    enum: ["coastal", "desert", "forest", "grassland", "hills", "mountains", "ocean", "swamp", "underground", "urban"], // Restrict habitat to specific options in alphabetical order
   },
   sightings: [
     {
