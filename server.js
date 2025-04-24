@@ -22,6 +22,9 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+//view engine
+app.set('view engine', 'ejs');
+
 // public folder for stylesheets and images
 app.use(express.static(path.join(__dirname, 'public')));
 

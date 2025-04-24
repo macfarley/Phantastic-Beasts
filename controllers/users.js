@@ -14,7 +14,7 @@ router.get("/:username", async (req, res) => {
             return res.status(404).send("User not found");
         }
         console.log(foundUser);
-        res.render(`/users/${foundUser.username}`, { user: foundUser });
+        res.render(`users/showUser.ejs`, { user: foundUser });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
