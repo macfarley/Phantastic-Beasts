@@ -3,9 +3,33 @@
 </head>
 <body>
     <%- include('../partials/_navBar') %>
+    <main class="overImage">
 
-    <h1>Location Details</h1>
-    <p>Here you can find information about the selected location.</p>
+        <article>
+            <h1><%= location.city %></h1>
+            <h1><%= location.kingdom.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') %></h1>
+            <h2>Home of these Explorers:</h2>
+            <% if (typeof explorers === 'string') { %>
+                <p><%= explorers %></p>
+            <% } else if (Array.isArray(explorers)) { %>
+                <ul>
+                    <% explorers.forEach(explorer => { %>
+                        <li><a href="/users/<%= explorer %>"><%= explorer %></a></li>
+                    <% }) %>
+                </ul>
+            <% } %>    <h2>Creatures Spotted here:</h2>
+            <% if (Array.isArray(creatures)) { %>
+                <ul>
+                    <% if (creatures.length > 0) { %>
+                        <% for (let i = 0; i < creatures.length; i++) { %>
+                            <li><a href="/creatures/<%= creatures[i] %>"><%= creatures[i] %></a></li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            <% } else if (typeof creatures === 'string') { %>
+                <p><%= creatures %></p>
+            <% } %>
+    </main>
 
 </body>
 </html>

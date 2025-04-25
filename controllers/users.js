@@ -5,7 +5,6 @@ const Sighting = require("../models/Sighting");
 const Location = require('../models/Location');
 const Creature = require("../models/Creature");
 const { format } = require("date-fns");
-const { ordinal } = require("date-fns-tz");
 const session = require('express-session')
 
 

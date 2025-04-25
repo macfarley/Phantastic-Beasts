@@ -11,7 +11,7 @@
             <h1><%= user.username %>'s Profile</h1>
         <% } %>
         <p><strong>Class:</strong> <%= user.class %></p>
-        <p><strong>Hometown:</strong> <%= city %></p>
+        <p><strong>Hometown:</strong> <a href="/locations/<%= city %>"><%= city %></a></p>
         <p><strong>Kingdom:</strong> <%= kingdom %></p>
     </article>
     <article>
@@ -21,7 +21,7 @@
             <h1><%= currentUser === user.username ? "Your Sightings" : "Sightings" %></h1>
             <% for (let i = 0; i < sightings.length; i++) { %>
             <div>
-            <p><strong>Creature:</strong> <%= creature[i].name %></p>
+            <p><strong>Creature:</strong> <a href="/creatures/<%= creature[i].name %>"><%= creature[i].name %></a></p>
             <p><strong>Date Added:</strong> <%= date[i] %></p>
             <% if (currentUser === user.username) { %>
                 <button onclick="location.href='/sightings/edit/<%= sightings[i]._id %>'" class="btn btn-secondary">Edit this Sighting</button>

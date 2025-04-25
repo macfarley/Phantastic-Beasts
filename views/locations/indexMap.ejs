@@ -6,26 +6,19 @@
     <main class="overImage">
         <article>
             <p>As our explorers discover new locations, we document their findings.</p>
-            <% locations.forEach(location => { %>
-
-                <% if (location.cities && location.cities.length > 0) { %>
-                    <h2><%= location.kingdom %></h2>
-                    <% location.cities.forEach(city => { %>
-                        <h3><%= city %></h3>
-                        <ul>
-                            <% if (location.homeOf && location.homeOf.length > 0) { %>
-                                <% location.homeOf.forEach(user => { %>
-                                    <li><a href="/users/<%= user.username %>"><%= user.username %></a></li>
-                                <% }) %>
-                            <% } %>
-                        </ul>
-                        <%= location.sightings
-                            .filter(sighting => sighting.city === city)
-                            .sort((a, b) => new Date(b.date) - new Date(a.date))[0]?.creature || 'No sightings' %></p>
-                    <% }) %>
-                <% } %>
-            <% }) %>
-        </article>
+            <ul>
+                <% locations.sort((a, b) => {
+                    return a.city.toLowerCase().localeCompare(b.city.toLowerCase());
+                }); %>
+                <% locations.forEach(location => { %>
+                    <li>
+                        <a href="/locations/<%= location.city %>">
+                            <%= location.city %>, 
+                            <%= location.kingdom.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ') %>
+                        </a>
+                    </li>
+                <% }); %>
+            </ul>
     </main>
     
 </body>
