@@ -8,12 +8,12 @@ const creatureSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ["Constructs", "Dragonkin", "Eldritch Horror", "Magical Beast", "Outsider", "Plants", "Undead"], // Restrict category to specific options in alphabetical order
+    enum: ["constructs", "dragonkin", "eldritch horror", "magical beast", "outsider", "plants", "undead"], // Restrict category to specific options in alphabetical order
   },
   size: {
     type: [String],
     required: true,
-    enum: ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"], // Restrict size to specific options
+    enum: ["tiny", "small", "medium", "large", "huge", "gargantuan"], // Restrict size to specific options
   },
   habitat: {
     type: [String],
