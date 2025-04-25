@@ -3,8 +3,20 @@
 </head>
 <body>
     <%- include('../partials/_navBar') %>
+    <main>
+        <article>
 
-    <h1>Creature Details</h1>
-    <p>Details about the creature will be displayed here.</p>
+            <h1><%= name %></h1>
+            <p>Category: <%= category %></p>
+            <p>Sizes: <%= sizes.join(', ') %></p>
+            <p>Habitats: <%= habitats.join(', ') %></p>
+            <h2>Notes:</h2>
+            <ul>
+                <% notes.forEach(note => { %>
+                    <li><%= note %></li>
+                <% }); %>
+            </ul>
+        </article>
+    </main>
 </body>
 </html>

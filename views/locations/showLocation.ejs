@@ -17,18 +17,23 @@
                         <li><a href="/users/<%= explorer %>"><%= explorer %></a></li>
                     <% }) %>
                 </ul>
-            <% } %>    <h2>Creatures Spotted here:</h2>
-            <% if (Array.isArray(creatures)) { %>
+                <% } %>
+        </article>
+        <article>
+            <h2>Creatures Spotted here:</h2>
+            <% if (typeof creatures === 'string') { %>
+                <p><%= creatures %></p>
+            <% } else if (Array.isArray(creatures)) { %>
                 <ul>
                     <% if (creatures.length > 0) { %>
                         <% for (let i = 0; i < creatures.length; i++) { %>
-                            <li><a href="/creatures/<%= creatures[i] %>"><%= creatures[i] %></a></li>
+                            <li><a href="/creatures/species/<%= creatures[i].replace(/\s+/g, '') %>"><%= creatures[i] %></a></li>
                         <% } %>
                     <% } %>
                 </ul>
-            <% } else if (typeof creatures === 'string') { %>
-                <p><%= creatures %></p>
             <% } %>
+            </article>
+    </main>
     </main>
 
 </body>

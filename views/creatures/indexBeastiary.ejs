@@ -4,7 +4,38 @@
 <body>
     <%- include('../partials/_navBar') %>
 
-    <h1>Beastiary Index</h1>
-    <p>Welcome to the Beastiary! Here you can find a list of all creatures.</p>
+    <main class="overImage">
+        <article>
+            <label for="creature-category">Looking just one type of monster?</label>
+            <select id="creature-category" name="category">
+                <option value="constructs">Constructs</option>
+                <option value="dragonkin">Dragonkin</option>
+                <option value="eldritch horror">Eldritch Horror</option>
+                <option value="giant">Giant</option>
+                <option value="magical-beast">Magical Beast</option>
+                <option value="outsider">Outsider</option>
+                <option value="plants">Plants</option>
+                <option value="undead">Undead</option>
+            </select>
+            <button type="button" id="find-them-button">Find Them</button>
+        </section>
+
+        <script>
+            document.getElementById('find-them-button').addEventListener('click', () => {
+                const categorySelect = document.getElementById('creature-category');
+                const selectedCategory = categorySelect.value.replace(/\s+/g, '');
+                window.location.href = `/creatures/category/${selectedCategory}`;
+            });
+        </script>    </article>
+
+            <h1>Beastiary Index</h1>
+
+            <ul>
+                <% creatureNames.forEach(name => { %>
+                    <li><a href="/creatures/species/<%= name.replace(/\s+/g, '') %>"><%= name %></a></li>
+                <% }); %>
+            </ul>
+        </article>
+    </main>
 </body>
 </html>
