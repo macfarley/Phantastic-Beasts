@@ -39,9 +39,8 @@ router.get("/:username", async (req, res) => {
         //store dates of sightings
         var dates = sightings.map(sighting => {
             const date = new Date(sighting.date);
-            const day = ordinal(date.getDate());
-            const formattedDate = format(date, `MMMM ${day}, yyyy`);
-            return formattedDate;
+            
+            return date;
         });}
     //render the showUser page 
     res.render("users/showUser.ejs", {session, user: foundUser, sightings: sightings, city: city, kingdom: kingdom, creature: creatures, date: dates });
