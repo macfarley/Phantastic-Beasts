@@ -24,26 +24,27 @@ router.get("/:username", async (req, res) => {
         var city = hometown ? hometown.city : "Unknown City";
         var kingdom = hometown ? hometown.kingdom : "Unknown Kingdom";
     //fetch all the user's sightings
-        let sightings = await Sighting.find({ _id: { $in: foundUser.sightings } });
-        if (!sightings.length) {
-            sightings = "This explorer has not recorded any sightings yet.";
+        let foundSightings = await Sighting.find({ _id: { $in: foundUser.sightings } });
+        if (!foundSightings.length) {
+            foundSightings = "This explorer has not recorded any sightings yet.";
         }else {
     //store creatures in sightings in an array
         var creatures = [];
-        for (const sighting of sightings) {
+        for (const sighting of foundSightings) {
             const creature = await Creature.findById(sighting.creature);
             if (creature) {
             creatures.push(creature);
             }
-        }
+            }
         //store dates of sightings
-        var dates = sightings.map(sighting => {
-            const date = new Date(sighting.date);
-            
-            return date;
-        });}
-    //render the showUser page 
-    res.render("users/showUser.ejs", {session, user: foundUser, sightings: sightings, city: city, kingdom: kingdom, creature: creatures, date: dates });
+        var dates = []
+        for (const sighting of foundSightings) {
+                dates.push(format(new Date(sighting.date), "MMMM dd, yyyy"));
+            }
+        }
+                
+        //render the showUser page 
+        res.render("users/showUser.ejs", {session, user: foundUser, sightings: foundSightings, city: city, kingdom: kingdom, creature: creatures, date: dates });
     } catch (error) {
         console.error(error);
         res.status(500).send("An error occurred while processing your request.");
