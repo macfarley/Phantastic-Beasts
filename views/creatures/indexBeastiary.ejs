@@ -6,30 +6,30 @@
 
     <main class="overImage">
         <article>
-            <label for="creature-category">Looking just one type of monster?</label>
-            <select id="creature-category" name="category">
-                <option value="constructs">Constructs</option>
-                <option value="dragonkin">Dragonkin</option>
-                <option value="eldritch horror">Eldritch Horror</option>
-                <option value="giant">Giant</option>
-                <option value="magical-beast">Magical Beast</option>
-                <option value="outsider">Outsider</option>
-                <option value="plants">Plants</option>
-                <option value="undead">Undead</option>
-            </select>
-            <button type="button" id="find-them-button">Find Them</button>
-        </section>
+            <form id="category-form" action="/creatures/category/:cateogry" method="get">
+                <label for="creature-category">Looking just one type of monster?</label>
+                <select id="creature-category" name="category">
+                    <option value="constructs">Constructs</option>
+                    <option value="dragonkin">Dragonkin</option>
+                    <option value="eldritch horror">Eldritch Horror</option>
+                    <option value="giant">Giant</option>
+                    <option value="magical-beast">Magical Beast</option>
+                    <option value="outsider">Outsider</option>
+                    <option value="plants">Plants</option>
+                    <option value="undead">Undead</option>
+                </select>
+                <button type="button" id="find-them-button">Find Them</button>
+            </form>
+        </article>
 
         <script>
-            document.getElementById('find-them-button').addEventListener('click', () => {
-                const categorySelect = document.getElementById('creature-category');
-                const selectedCategory = categorySelect.value.replace(/\s+/g, '');
-                window.location.href = `/creatures/category/${selectedCategory}`;
+            document.getElementById('find-them-button').addEventListener('click', function () {
+                const category = document.getElementById('creature-category').value;
+                window.location.href = `/creatures/category/${encodeURIComponent(category)}`;
             });
-        </script>    </article>
-
+        </script>    
+        <article>
             <h1>Beastiary Index</h1>
-
             <ul>
                 <% creatureNames.forEach(name => { %>
                     <li><a href="/creatures/species/<%= name.replace(/\s+/g, '') %>"><%= name %></a></li>

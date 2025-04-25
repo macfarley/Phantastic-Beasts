@@ -1,0 +1,33 @@
+<%- include('../partials/_header') %>
+<title>Beastiary Index</title>
+</head>
+<body>
+<%- include('../partials/_navBar') %>
+
+<main class="overImage">
+    <article>
+        <label for="creature-category">Looking just one type of monster?</label>
+        <select id="creature-category" name="category">
+            <option value="constructs">Constructs</option>
+            <option value="dragonkin">Dragonkin</option>
+            <option value="eldritch horror">Eldritch Horror</option>
+            <option value="giant">Giant</option>
+            <option value="magical-beast">Magical Beast</option>
+            <option value="outsider">Outsider</option>
+            <option value="plants">Plants</option>
+            <option value="undead">Undead</option>
+        </select>
+        <button type="button" id="find-them-button">Find Them</button>
+    </article>
+    <article>
+        <h1>These Beasts are Called <%= category %></h1>
+
+        <ul>
+            <% creatureNames.forEach(name => { %>
+                <li><a href="/creatures/species/<%= name.replace(/\s+/g, '') %>"><%= name %></a></li>
+            <% }); %>
+        </ul>
+    </article>
+</main>
+</body>
+</html>

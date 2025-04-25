@@ -1,24 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
 const Sighting = require("../models/Sighting");
-const Location = require('../models/Location');
 const Creature = require("../models/Creature");
 
 
 // RESTful Routes
 // Show Full Beastiary
-router.get("/", (req, res) => {
-    Creature.find({}, "name", (err, creatures) => {
-        if (err) {
-            console.error("Error fetching creatures:", err);
-            return res.status(500).send("Internal Server Error");
-        }
-
+router.get("/", async (req, res) => {
+    try {
+        const creatures = await Creature.find({}, "name");
         const creatureNames = creatures.map(creature => creature.name);
 
-        res.render('/creatures/beastiary.ejs', { creatureNames });
-    });
+        res.render('creatures/indexBeastiary.ejs', { creatureNames });
+    } catch (err) {
+        console.error("Error fetching creatures:", err);
+        res.status(500).send("Internal Server Error");
+    }
 });
 // route to a certain Creature page
 router.get("/species/:species", async (req, res) => {
@@ -48,7 +45,22 @@ router.get("/species/:species", async (req, res) => {
 
 });
 //route to find all creatures of a certain caregory
+router.get("/category/:category", async (req, res) => {
+    const category = req.params.category;
+    try {
+        const creatures = await Creature.find({ category: category }, "name");
+        if (creatures.length === 0) {
+            return res.status(404).send("No creatures found in this category");
+        }
 
+        const creatureNames = creatures.map(creature => creature.name);
+
+        res.render('creatures/showCategory.ejs', { category, creatureNames });
+    } catch (err) {
+        console.error("Error fetching creatures by category:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 // Here is where i'll put routes for admins to edit or delete Creatures
 
 

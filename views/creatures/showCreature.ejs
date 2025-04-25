@@ -5,15 +5,14 @@
     <%- include('../partials/_navBar') %>
     <main>
         <article>
-
-            <h1><%= name %></h1>
-            <p>Category: <%= category %></p>
-            <p>Sizes: <%= sizes.join(', ') %></p>
-            <p>Habitats: <%= habitats.join(', ') %></p>
+            <h1><%= name.charAt(0).toUpperCase() + name.slice(1) %></h1>
+            <p>Category: <%= category.charAt(0).toUpperCase() + category.slice(1) %></p>
+            <p>Sizes: <%= sizes.map(size => size.charAt(0).toUpperCase() + size.slice(1)).join(', ') %></p>
+            <p>Habitats: <%= habitats.map(habitat => habitat.charAt(0).toUpperCase() + habitat.slice(1)).join(', ') %></p>
             <h2>Notes:</h2>
             <ul>
                 <% notes.forEach(note => { %>
-                    <li><%= note %></li>
+                    <li><%= note.charAt(0).toUpperCase() + note.slice(1) %></li>
                 <% }); %>
             </ul>
         </article>
