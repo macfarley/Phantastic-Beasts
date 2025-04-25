@@ -9,11 +9,11 @@ const { ordinal } = require("date-fns-tz");
 const session = require('express-session')
 
 //store current user object
-var currentUser = null;
+let userId;
 if (session && session.username) {
     User.findOne({ username: session.username })
         .then(user => {
-            currentUser = user;
+            userId = user._id; // Cache the id field in userId
         })
         .catch(err => {
             console.error("Error fetching user:", err);
@@ -22,7 +22,7 @@ if (session && session.username) {
 //RESTful Routes
 //fetch the new Sighting page
 router.get('/new', (req, res) => {
-    res.render('sightings/newSighting.ejs', { user: currentUser });
+    res.render('sightings/newSighting.ejs', { user: session.username });
 });
 //Create a new Sighting entry, possibly a location and creature as well.
 router.post('/', async (req, res) => {
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
         const newSighting = new Sighting({
             date,
             location: locationId,
-            user: currentUser._id,
+            user: userId,
             creature: creatureId,
             encounter,
             notes,
@@ -76,7 +76,7 @@ router.post('/', async (req, res) => {
         await creature.save();
 
         console.log("Sighting created successfully:", newSighting);
-        res.redirect(`/users/${currentUser._id}`);
+        res.redirect(`/users/${session.username}`);
     } catch (err) {
         console.error("Error creating sighting:", err);
         res.status(500).send("An error occurred while creating the sighting.");
