@@ -28,7 +28,7 @@ const sightingSchema = new mongoose.Schema({
     notes: {
         type: String,
         required: false,
-        maxlength: 200,
+        maxlength: 500,
     },
 });
 const Sighting = mongoose.model("Sighting", sightingSchema);

@@ -1,21 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
-h2 {
-  vertical-align: center;
-  text-align: center;
-}
-
-html, body {
-  margin: 0;
-  height: 100%;
-  background-image: url('/images/background.jpeg');
-  background-size: cover;
-  background-position: center;
-}
 
 * {
   font-family: "Raleway";
   box-sizing: border-box;
 }
+h1 {
+  font-size: 1em;
+}
+
+h2 {
+  vertical-align: center;
+  text-align: center;
+}
+
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background-image: url('/images/background.jpeg');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .overImage {
   height: 90vh;
   display: flex;
@@ -25,7 +34,7 @@ html, body {
     flex-direction: column;
   }
 }
-.overImage article {
+article {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 2vh;
     border-radius: 8px;

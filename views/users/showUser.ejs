@@ -5,10 +5,10 @@
     <%- include('../partials/_navBar') %>
     <main class="overImage">
     <article>
-        <% if (session.user && session.user.username === user.username) { %>
-            <h1>This is your personal page, <%= user.username %></h1>
+        <% if (currentUser === user.username) { %>
+            <h1>This is your Profile, <%= user.username %></h1>
         <% } else { %>
-            <h1><%= user.username %></h1>
+            <h1><%= user.username %>'s Profile</h1>
         <% } %>
         <p><strong>Class:</strong> <%= user.class %></p>
         <p><strong>Hometown:</strong> <%= city %></p>
@@ -18,16 +18,23 @@
         <% if (typeof sightings === 'string') { %>
             <p><%= sightings %></p>
         <% } else if (Array.isArray(sightings) && sightings.length > 0) { %>
-            <h2>Sightings</h2>
+            <h1><%= currentUser === user.username ? "Your Sightings" : "Sightings" %></h1>
             <% for (let i = 0; i < sightings.length; i++) { %>
             <div>
             <p><strong>Creature:</strong> <%= creature[i].name %></p>
             <p><strong>Date Added:</strong> <%= date[i] %></p>
+            <% if (currentUser === user.username) { %>
+                <button onclick="location.href='/sightings/edit/<%= sightings[i]._id %>'" class="btn btn-secondary">Edit this Sighting</button>
+            <% } %>
             </div>
             <% } %>
         <% } %>
-        <button onclick="location.href='/sightings/new'" class="btn btn-primary">Add a New Sighting</button>
+        <% if (currentUser === user.username) { %>
+            <button onclick="location.href='/sightings/new'" class="btn btn-primary">Add a New Sighting</button>
+        <% } %>
     </article>
-
     </main>
-<%- include('../partials/_footer') %>
+    <%- include('../partials/_footer') %>
+
+</body>
+</html>

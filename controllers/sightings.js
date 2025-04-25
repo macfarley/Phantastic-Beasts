@@ -85,5 +85,37 @@ router.post('/new', async (req, res) => {
         res.status(500).send("An error occurred while creating the sighting.");
     }
 });
+//from the user's page, fetch an edit page for a particular sighting
+router.get('/edit/:sightingId', async (req, res) => {
+    const sightingId = req.params.sightingId;
+    const sighting = await Sighting.findById(sightingId).populate('creature').populate('location');
+    res.render('sightings/editSighting.ejs', { user: req.session.user.username, sighting });
+})
+//from the edit page, handle the update of the sighting
+router.put('/edit/:sightingId', async (req, res) => {
+    const sightingId = req.params.sightingId;
+    const { date, encounter, notes } = req.body;
+    try {
+        const updatedSighting = await Sighting.findByIdAndUpdate(sightingId, { date, encounter, notes }, { new: true });
+        console.log("Sighting updated:", updatedSighting);
+        res.redirect(`/users/${req.session.user.username}`);
+    } catch (err) {
+        console.error("Error updating sighting:", err);
+        res.status(500).send("An error occurred while updating the sighting.");
+    }
+});
+//from the edit page, delete the entire entry instead.
+router.delete('/delete/:sightingId', async (req, res) => {
+    const sightingId = req.params.sightingId;
+    try {
+        await Sighting.findByIdAndDelete(sightingId);
+        console.log("Sighting deleted:", sightingId);
+        res.redirect(`/users/${req.session.user.username}`);
+    } catch (err) {
+        console.error("Error deleting sighting:", err);
+        res.status(500).send("An error occurred while deleting the sighting.");
+    }
+});
+
 
 module.exports = router;

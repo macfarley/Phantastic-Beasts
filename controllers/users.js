@@ -44,26 +44,13 @@ router.get("/:username", async (req, res) => {
         }
                 
         //render the showUser page 
-        res.render("users/showUser.ejs", {session, user: foundUser, sightings: foundSightings, city: city, kingdom: kingdom, creature: creatures, date: dates });
+        res.render("users/showUser.ejs", {currentUser: req.session.user.username, user: foundUser, sightings: foundSightings, city: city, kingdom: kingdom, creature: creatures, date: dates });
     } catch (error) {
         console.error(error);
         res.status(500).send("An error occurred while processing your request.");
     }
 });
-//fetch a form page to edit sighting
-router.get('/:username/:sightingId/edit', (req, res) => {
-    if (req.session.username === req.params.username) {
-        Sighting.findById(req.params.sightingId, (err, foundSighting) => {
-            if (err || !foundSighting) {
-                return res.status(404).send("Sighting not found");
-            }
-            res.render("sightings/editSighting.ejs", { sighting: foundSighting });
-        });
-    } else {
-        res.status(403).send("Unauthorized");
-    }
-});
-// 
+
 // Here is where i'll put routes for admins to edit or delete Users who request
 
 
