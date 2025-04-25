@@ -17,7 +17,7 @@ router.get('/new', (req, res) => {
     res.render('sightings/newSighting.ejs', { user: req.session.user.username });
 });
 //Create a new Sighting entry, possibly a location and creature as well.
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
     const { date, name, category, habitat, size, city, kingdom, encounter, notes } = req.body;
     console.log(req.body, req.session)
     try {
