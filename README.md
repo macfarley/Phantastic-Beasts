@@ -6,13 +6,13 @@
 
 - Add and manage sightings of mythical creatures  
 - Browse reported locations of various species  
-- Search and filter reports by species, region, or date  
+- Search and filter reports by category.
 - Store personal notes for each sighting  
 - Simple and intuitive interface for enthusiasts and experts alike
 
 ## 🌍 Live Demo & Repository
 
-👉 [Visit the app on Heroku](https://your-heroku-app-url.com)  
+👉 [Visit the app on Heroku](https://phantastic-beasts-d585c0bc1aa9.herokuapp.com/)  
 👉 [Full GitHub Repository](https://github.com/macfarley/Phantastic-Beasts)
 
 ## ⚙️ Tech Stack
@@ -25,7 +25,7 @@
 
 ## 🗺️ Site Map
 
-The app is structured with a public landing page, login/signup functionality, and user-only views for managing sightings. Navigation allows filtering sightings by **location** or **creature type**.
+The app is structured with a public landing page, login/signup functionality, and user-only views for managing sightings. Navigation allows filtering sightings by **creature type**.
 
 ![Site Map](./Phantastic%20Site%20Map.png)
 
@@ -33,30 +33,31 @@ The app is structured with a public landing page, login/signup functionality, an
 
 The app includes three core models: `User`, `Species`, and `Locality`. Relationships are built around sightings and shared metadata.
 
-![ERD](./Phantastic%20ERD.png)
+![ERD](/public/images/PB-mvp-ERD.png)
 
 ### ⚡ Model Overview
 
 #### `User`
-- `Username`, `Password`, `Hometown`
+- `Username`, `Password` (hashed and encrypted for security), `Hometown`
 - `Sightings` (Array of associated reports)
 
-#### `Species`
-- `Name`, `Category`, `Location[]`, `Size`, `Notes[]`
-- `SpottedBy[]` (Users who reported sightings)
+#### `Creature`
+- `Name`, `Category`, `Size`, `Habitat`, `Sightings` (an array of sightings referencing this Creature)
 
-#### `Locality`
-- `Name`, `Kingdom`, `HometownOf[]`, `Species[]`
+#### `Location`
+- `City`, `Kingdom`, `HomeOf[]`, `Sightings[]`
 
+#### `Sightings`
+- `User`, `Location`, `Creature`, `Encounter`, `Notes`
 ## 📫 API Overview
 
 | Method | Endpoint         | Description                    |
 |--------|------------------|--------------------------------|
-| GET    | `/beasts`        | Get all reported beasts        |
-| POST   | `/beasts`        | Add a new beast sighting       |
-| GET    | `/beasts/:id`    | View a specific sighting       |
-| PUT    | `/beasts/:id`    | Edit a sighting                |
-| DELETE | `/beasts/:id`    | Delete a sighting              |
+| GET    | `/creatures`        | Get all reported beasts        |
+| POST   | `/sightings/new`        | Add a new beast sighting       |
+| GET    | `/creatures/species/:name`    | View a specific Creature       |
+| PUT    | `/sightings/edit`    | Edit a sighting                |
+| DELETE | `/beasts/edit`    | Delete a sighting              |
 
 ## 🚀 Deployment
 
@@ -72,6 +73,8 @@ Founder of [Extra G Data Solutions](https://www.linkedin.com/in/travis-mccoy-630
 Found a bug, have a feature idea, or want to add some magic of your own?  
 Fork the repo, make your changes, and open a pull request!
 
-## 📄 License
+## 📄 Licenses
 
 MIT License — feel free to fork, clone, and conjure your own version.
+Special thanks to: phoenix icon by icon8
+https://fonts.google.com/specimen/Qwigley/license
