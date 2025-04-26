@@ -7,11 +7,17 @@
     <div class='menu-button'></div>
   </label>
     <ul class="menu">
-      <li><a class="nav-item" href="/">Home</a></li>
-      <li><a class="nav-item" href="/locations">Locations</a></li>
-      <li><a class="nav-item" href="/creatures/">Beastiary</a></li>
-      <li><a class="nav-item" href="/auth/sign-up">Sign Up</a></li>
-      <li><a class="nav-item" href="/auth/sign-in">Sign In</a></li>
-      <li><a class="nav-item" href="/auth/sign-out">Sign Out</a></li>
+      <% if (user) { %>
+        <li><a class="nav-item" href="/">Home</a></li>
+        <li><a class="nav-item" href="/locations">Locations</a></li>
+        <li><a class="nav-item" href="/creatures/">Beastiary</a></li>
+        <li><a class="nav-item" href="/users/">Your Page</a></li>
+        <li><a class="nav-item" href="/auth/sign-out">Sign Out</a></li>
+      <% } else { %>
+        <li><a class="nav-item" href="/">Home</a></li>
+        <li><a class="nav-item" href="/locations">Locations</a></li>
+        <li><a class="nav-item" href="/auth/sign-up">Sign Up</a></li>
+        <li><a class="nav-item" href="/auth/sign-in">Sign In</a></li>
+      <% } %>
     </ul>
   </section>

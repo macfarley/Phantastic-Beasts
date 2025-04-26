@@ -6,122 +6,129 @@
 
     <main class="overImage">
       
-        <h1>Register with the Guild to see the Beastiary</h1>
-        <form action="/auth/sign-up" method="POST">
-          <article>
-            <div class="separate">
-              <label for="username">Username:</label>
-              <input type="text" name="username" id="username" required />
-            </div>
+        <article>
+          <h1>Register with the Guild to see the Beastiary</h1>
+          <form action="/auth/sign-up" method="POST">
+            <article>
+              <div class="separate">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required />
+              </div>
 
+              <div class="separate">
+                <label for="password">Password (at least 12 characters, no spaces):</label>
+                <input type="password" name="password" id="password" minlength="12" pattern="^\S+$" required />
+              </div>
 
-            <div class="separate">
-              <label for="password">Password (at least 12 characters, no spaces):</label>
-              <input type="password" name="password" id="password" minlength="12" pattern="^\S+$" required />
-            </div>
+              <div class="separate">
+                <label for="confirmPassword">Confirm Password (must match):</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required />
+              </div>
+              <div class="separate">
+                <label for="class">Adventuring Class:</label>
+                <select name="class" id="class">
+                  <option value="" disabled selected>Select your Class</option>
+                  <option value="Barbarian">Barbarian</option>
+                  <option value="Bard">Bard</option>
+                  <option value="Cleric">Cleric</option>
+                  <option value="Druid">Druid</option>
+                  <option value="Fighter">Fighter</option>
+                  <option value="Monk">Monk</option>
+                  <option value="Paladin">Paladin</option>
+                  <option value="Ranger">Ranger</option>
+                  <option value="Rogue">Rogue</option>
+                  <option value="Sorcerer">Sorcerer</option>
+                  <option value="Warlock">Warlock</option>
+                  <option value="Wizard">Wizard</option>
+                  <option value="Ranger">Ranger</option>
+                  <option value="Fighter">Fighter</option>
+                  <option value="Wizard">Wizard</option>
+                  <option value="Rogue">Rogue</option>
+                  <option value="Cleric">Cleric</option>
+                  <option value="Paladin">Paladin</option>
+                  <option value="Bard">Bard</option>
+                  <option value="Monk">Monk</option>
+                  <option value="Warlock">Warlock</option>
+                  <option value="Sorcerer">Sorcerer</option>
+                  <option value="Barbarian">Barbarian</option>
+                </select>
+              </div>
+              <div class="separate">
+                <label for="hometown">Hometown (City):</label>
+                <input name="hometown" id="hometown" required />
+              </div>
+              <div class="separate">
+                <label for="kingdom">Kingdom (State):</label>
+                <select name="kingdom" id="kingdom" required>
+                  <option value="" disabled selected>Select your state</option>
+                  <option value="alabama">Alabama</option>
+                  <option value="alaska">Alaska</option>
+                  <option value="arizona">Arizona</option>
+                  <option value="arkansas">Arkansas</option>
+                  <option value="california">California</option>
+                  <option value="colorado">Colorado</option>
+                  <option value="connecticut">Connecticut</option>
+                  <option value="delaware">Delaware</option>
+                  <option value="district of columbia">District of Columbia</option>
+                  <option value="florida">Florida</option>
+                  <option value="georgia">Georgia</option>
+                  <option value="hawaii">Hawaii</option>
+                  <option value="idaho">Idaho</option>
+                  <option value="illinois">Illinois</option>
+                  <option value="indiana">Indiana</option>
+                  <option value="iowa">Iowa</option>
+                  <option value="kansas">Kansas</option>
+                  <option value="kentucky">Kentucky</option>
+                  <option value="louisiana">Louisiana</option>
+                  <option value="maine">Maine</option>
+                  <option value="maryland">Maryland</option>
+                  <option value="massachusetts">Massachusetts</option>
+                  <option value="michigan">Michigan</option>
+                  <option value="minnesota">Minnesota</option>
+                  <option value="mississippi">Mississippi</option>
+                  <option value="missouri">Missouri</option>
+                  <option value="montana">Montana</option>
+                  <option value="nebraska">Nebraska</option>
+                  <option value="nevada">Nevada</option>
+                  <option value="new hampshire">New Hampshire</option>
+                  <option value="new jersey">New Jersey</option>
+                  <option value="new mexico">New Mexico</option>
+                  <option value="new york">New York</option>
+                  <option value="north carolina">North Carolina</option>
+                  <option value="north dakota">North Dakota</option>
+                  <option value="ohio">Ohio</option>
+                  <option value="oklahoma">Oklahoma</option>
+                  <option value="oregon">Oregon</option>
+                  <option value="pennsylvania">Pennsylvania</option>
+                  <option value="puerto rico">Puerto Rico</option>
+                  <option value="rhode island">Rhode Island</option>
+                  <option value="south carolina">South Carolina</option>
+                  <option value="south dakota">South Dakota</option>
+                  <option value="tennessee">Tennessee</option>
+                  <option value="texas">Texas</option>
+                  <option value="utah">Utah</option>
+                  <option value="vermont">Vermont</option>
+                  <option value="virginia">Virginia</option>
+                  <option value="washington">Washington</option>
+                  <option value="west virginia">West Virginia</option>
+                  <option value="wisconsin">Wisconsin</option>
+                  <option value="wyoming">Wyoming</option>
+                </select>
+              </div>
 
-            <div class="separate">
-              <label for="confirmPassword">Confirm Password (must match):</label>
-              <input type="password" name="confirmPassword" id="confirmPassword" required />
-            </div>
-            <div class="separate">
-              <label for="class">Adventuring Class:</label>
-              <select name="class" id="class" >
-                <option value="" disabled selected>Select your Class</option>
-                <option value="Barbarian">Barbarian</option>
-                <option value="Bard">Bard</option>
-                <option value="Cleric">Cleric</option>
-                <option value="Druid">Druid</option>
-                <option value="Fighter">Fighter</option>
-                <option value="Monk">Monk</option>
-                <option value="Paladin">Paladin</option>
-                <option value="Ranger">Ranger</option>
-                <option value="Rogue">Rogue</option>
-                <option value="Sorcerer">Sorcerer</option>
-                <option value="Warlock">Warlock</option>
-                <option value="Wizard">Wizard</option>  <option value="Ranger">Ranger</option>
-                <option value="Fighter">Fighter</option>
-                <option value="Wizard">Wizard</option>
-                <option value="Rogue">Rogue</option>
-                <option value="Cleric">Cleric</option>
-                <option value="Paladin">Paladin</option>
-                <option value="Bard">Bard</option>
-                <option value="Monk">Monk</option>
-                <option value="Warlock">Warlock</option>
-                <option value="Sorcerer">Sorcerer</option>
-                <option value="Barbarian">Barbarian</option>  </select>
-            </div>
-            <div class="separate">
-              <label for="hometown">Hometown (City):</label>
-              <input name="hometown" id="hometown" required />
-            </div>
-            <div class="separate">
-              <label for="kingdom">Kingdom (State):</label>
-              <select name="kingdom" id="kingdom" required>
-                <option value="" disabled selected>Select your state</option>
-                <option value="alabama">Alabama</option>
-                <option value="alaska">Alaska</option>
-                <option value="arizona">Arizona</option>
-                <option value="arkansas">Arkansas</option>
-                <option value="california">California</option>
-                <option value="colorado">Colorado</option>
-                <option value="connecticut">Connecticut</option>
-                <option value="delaware">Delaware</option>
-                <option value="district of columbia">District of Columbia</option>
-                <option value="florida">Florida</option>
-                <option value="georgia">Georgia</option>
-                <option value="hawaii">Hawaii</option>
-                <option value="idaho">Idaho</option>
-                <option value="illinois">Illinois</option>
-                <option value="indiana">Indiana</option>
-                <option value="iowa">Iowa</option>
-                <option value="kansas">Kansas</option>
-                <option value="kentucky">Kentucky</option>
-                <option value="louisiana">Louisiana</option>
-                <option value="maine">Maine</option>
-                <option value="maryland">Maryland</option>
-                <option value="massachusetts">Massachusetts</option>
-                <option value="michigan">Michigan</option>
-                <option value="minnesota">Minnesota</option>
-                <option value="mississippi">Mississippi</option>
-                <option value="missouri">Missouri</option>
-                <option value="montana">Montana</option>
-                <option value="nebraska">Nebraska</option>
-                <option value="nevada">Nevada</option>
-                <option value="new hampshire">New Hampshire</option>
-                <option value="new jersey">New Jersey</option>
-                <option value="new mexico">New Mexico</option>
-                <option value="new york">New York</option>
-                <option value="north carolina">North Carolina</option>
-                <option value="north dakota">North Dakota</option>
-                <option value="ohio">Ohio</option>
-                <option value="oklahoma">Oklahoma</option>
-                <option value="oregon">Oregon</option>
-                <option value="pennsylvania">Pennsylvania</option>
-                <option value="puerto rico">Puerto Rico</option>
-                <option value="rhode island">Rhode Island</option>
-                <option value="south carolina">South Carolina</option>
-                <option value="south dakota">South Dakota</option>
-                <option value="tennessee">Tennessee</option>
-                <option value="texas">Texas</option>
-                <option value="utah">Utah</option>
-                <option value="vermont">Vermont</option>
-                <option value="virginia">Virginia</option>
-                <option value="washington">Washington</option>
-                <option value="west virginia">West Virginia</option>
-                <option value="wisconsin">Wisconsin</option>
-                <option value="wyoming">Wyoming</option>
-              </select>  </div>
+              <div class="separate">
+                <label for="admin">Admin?:</label>
+                <input type="checkbox" name="admin" id="admin" />
+              </div>
 
-            <div class="separate">
-              <label for="admin">Admin?:</label>
-              <input type="checkbox" name="admin" id="admin" />
-            </div>
-
-            <div class="separate">
-              <button type="submit">Register</button>
-            </div>
-          </article>
-        </form>  </main>
+              <div class="separate">
+                <button type="submit">Register</button>
+              </div>
+            </article>
+          </form>
+        </article>  
+    <%- include('../partials/_footer') %>
+    
+    </main>
   </body>
 </html>

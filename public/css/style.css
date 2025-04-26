@@ -1,18 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 * {
-  font-family: "Raleway";
+  font-family: "Marck Script";
+  font-size: 5vh;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-h1 {
-  font-size: 1em;
-}
-
-h2 {
-  vertical-align: center;
-  text-align: center;
-}
-
 
 html, body {
   margin: 0;
@@ -24,12 +17,15 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+h1, .bigger {
+  font-size: 2rem;
+}
 
 .overImage {
   height: 90vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -38,8 +34,8 @@ article {
     background-color: rgba(255, 255, 255, 0.7);
     padding: 2vh;
     border-radius: 8px;
-    width: fit-content;
     height: fit-content;
+    width: fit-content;
     margin: 5vh;
     text-align: left;
     font-size: calc(1vw + 1vh);
@@ -49,6 +45,7 @@ article {
       width: 80vw;
     }
 }
+
 .separate{
     text-align: left;
     display: flex;
@@ -73,13 +70,10 @@ textarea { display:block;}
   width: 90%;
   
 }
-footer{
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 1em;
-  border-radius: 8px;
-  width: 90vw;
-  margin: 5vh;
-  font-size: x-small;
+.footer{
+  display: flex;
+  flex-direction: column;
+  font-size: xx-small;
 }
 .menu {
   display: flex;

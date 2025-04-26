@@ -7,16 +7,19 @@
   </header>
     <main class="overImage">
         <article>
+          <p>You are currently logged in as 
+          <% if (session.user) { %>
+            <a href="/users/<%= session.user.username %>"><%= session.user.name %></a>
+          <% } else { %>
+            <strong>Guest</strong>
+          <% } %>.
+          </p>
           <h2>Welcome to the world of Phantastic Beasts, and Where We Found Them.</h2>
-            <p>Explore the world of magical creatures, and let others know where you saw them.
-                You are currently logged in as 
-                <% if (session.user) { %>
-                  <a href="/users/<%= session.user.username %>"><%= session.user.name %></a>
-                <% } else { %>
-                  Guest
-                <% } %>.  
-                <p>Only registered Explorer's Guild members can view the Beastiary and contribute their own stories. Currently, Guests can only view the <a href="/locations">Locations</a> list.</p>
-                <p>Please <a href="/auth/sign-in">Log In</a> or <a href="/auth/sign-up">Register</a> so you can join in the fun!</p>
-            </p>
+          <p>The year is 2225 by the old reckoning, some time in the last century a cosmic event altered the fabric of our reality.  Magick returned to our world, and with it the every variety of Phantasitic Beasts from the depths of our imagination.  Or maybe the legends were true after all.</p>
+          <p>This continent used to be home to the American Empire, but now has fractured into a collection of warring Kingdoms, each vying for control over the remnants of its former glory.</p>
+          <p>Working with, or sometimes around these Kingdoms' rulers, the Explorer's Guild has married Magick with technology, creating a new era of exploration and adventure using magical books like the one you're viewing this message on.</p>
+          <p>Explore the world of magical creatures, and let others know where you saw them.  Only registered Explorer's Guild members can view the Beastiary and contribute their own stories.  Currently, Guests can only view the <a href="/locations">Locations</a> list.</p>
+          <p>Please <a href="/auth/sign-in">Log In</a> or <a href="/auth/sign-up">Register</a> so you can join in the fun!  And don't worry, if a creature eats you, the Magick book will send your final observations to be recorded for posterity.</p>
         </article>
+        <%- include('./partials/_footer') %>
       </main>

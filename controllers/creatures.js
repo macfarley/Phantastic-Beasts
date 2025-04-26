@@ -44,11 +44,11 @@ router.get("/species/:species", async (req, res) => {
     }
 
 });
-//route to find all creatures of a certain caregory
-router.get("/category/:category", async (req, res) => {
+//route to find all creatures of a certain category
+router.post("/category/:category", async (req, res) => {
     const category = req.params.category;
     try {
-        const creatures = await Creature.find({ category: category }, "name");
+        const creatures = await Creature.find({ category: category });
         if (creatures.length === 0) {
             return res.status(404).send("No creatures found in this category");
         }

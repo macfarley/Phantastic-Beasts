@@ -9,8 +9,15 @@ const session = require('express-session')
 
 
 // RESTful Routes
-// Upon login, users are directed to their respective pages based on their roles.
-// route to a user's list of sightings
+// Upon login, users are directed to their pages.
+router.get('/', async (req, res) => {
+    if (!req.session.user) {
+        res.redirect("/home");
+    } else {
+        res.redirect(`/users/${req.session.user.username}`);
+    }
+}); 
+// route to a user's profile
 router.get("/:username", async (req, res) => {
     const username = req.params.username;    
     try {
