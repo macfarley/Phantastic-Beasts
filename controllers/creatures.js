@@ -45,17 +45,20 @@ router.get("/species/:species", async (req, res) => {
 
 });
 //route to find all creatures of a certain category
-router.post("/category/:category", async (req, res) => {
-    const category = req.params.category;
+router.post("/category/", async (req, res) => {
+    const category = req.body.category || req.query.category;
+    console.log("Category requested:", category);
     try {
         const creatures = await Creature.find({ category: category });
+        let creatureNames;
+
         if (creatures.length === 0) {
-            return res.status(404).send("No creatures found in this category");
+            creatureNames = ["No creatures found in this category...yet."];
+        } else {
+            creatureNames = creatures.map(creature => creature.name);
         }
 
-        const creatureNames = creatures.map(creature => creature.name);
-
-        res.render('creatures/showCategory.ejs', { category, creatureNames });
+        res.render('creatures/showCategory.ejs', { category: category, creatureNames });
     } catch (err) {
         console.error("Error fetching creatures by category:", err);
         res.status(500).send("Internal Server Error");

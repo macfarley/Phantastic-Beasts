@@ -10,6 +10,10 @@
 - Store personal notes for each sighting  
 - Simple and intuitive interface for enthusiasts and experts alike
 
+## Accessability Concerns
+- Meets **WCAG 2.1 AAA** contrast guidelines for improved readability. [Check contrast here](https://webaim.org/resources/contrastchecker/?fcolor=3B2A1A&bcolor=F5DEB3)
+- Buttons and links are accessable by tab through and 44 pixels on smallest side.
+
 ## 🌍 Live Demo & Repository
 
 👉 [Visit the app on Heroku](https://phantastic-beasts-d585c0bc1aa9.herokuapp.com/)  
@@ -23,11 +27,10 @@
 - **MongoDB Atlas** – Cloud database storage  
 - **Heroku** – App hosting
 
-## 🗺️ Site Map
+## Site Structure
 
 The app is structured with a public landing page, login/signup functionality, and user-only views for managing sightings. Navigation allows filtering sightings by **creature type**.
 
-![Site Map](./Phantastic%20Site%20Map.png)
 
 ## 🧬 Entity Relationship Diagram (ERD)
 
@@ -57,7 +60,7 @@ The app includes three core models: `User`, `Species`, and `Locality`. Relations
 | POST   | `/sightings/new`        | Add a new beast sighting       |
 | GET    | `/creatures/species/:name`    | View a specific Creature       |
 | PUT    | `/sightings/edit`    | Edit a sighting                |
-| DELETE | `/beasts/edit`    | Delete a sighting              |
+| DELETE | `/sightings/edit`    | Delete a sighting              |
 
 ## 🚀 Deployment
 

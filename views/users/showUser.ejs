@@ -12,30 +12,32 @@
         <% } %>
         <p><strong>Class:</strong> <%= user.class %></p>
         <p><strong>Hometown:</strong> <a href="/locations/<%= city %>"><%= city %></a></p>
-        <p><strong>Kingdom:</strong> <%= kingdom %></p>
+        <p><strong>Kingdom:</strong> <%= kingdom.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') %></p>
     </article>
     <article>
         <% if (typeof sightings === 'string') { %>
             <p><%= sightings %></p>
         <% } else if (Array.isArray(sightings) && sightings.length > 0) { %>
             <h1><%= currentUser === user.username ? "Your Sightings" : "Sightings" %></h1>
-            <% for (let i = 0; i < sightings.length; i++) { %>
-            <div>
-            <p><strong>Creature:</strong> <a href="/creatures/species/<%= creature[i].name.replace(/\s+/g, '') %>"><%= creature[i].name %></a></p>
-            
-            <p><strong>Date Added:</strong> <%= date[i] %></p>
-            <% if (currentUser === user.username) { %>
-                <button onclick="location.href='/sightings/edit/<%= sightings[i]._id %>'" class="btn btn-secondary">Edit this Sighting</button>
-            <% } %>
-            </div>
-            <% } %>
+            <section>
+                <% for (let i = 0; i < sightings.length; i++) { %>
+                <div class="sighting">
+                    <p><strong>Creature:</strong> <a href="/creatures/species/<%= creature[i].name.replace(/\s+/g, '') %>"><%= creature[i].name %></a></p>
+                    <p><strong>Date Added:</strong> <%= date[i] %></p>
+                    <% if (currentUser === user.username) { %>
+                        <button onclick="location.href='/sightings/edit/<%= sightings[i]._id %>'" class="btn">Edit this Sighting</button>
+                    <% } %>
+                </div>
+                <% } %>
+            </section>
         <% } %>
         <% if (currentUser === user.username) { %>
-            <button onclick="location.href='/sightings/new'" class="btn btn-primary">Add a New Sighting</button>
+            <button onclick="location.href='/sightings/new'" class="btn">Add a New Sighting</button>
         <% } %>
     </article>
-    </main>
     <%- include('../partials/_footer') %>
+
+    </main>
 
 </body>
 </html>

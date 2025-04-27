@@ -6,20 +6,29 @@
 
     <main class="overImage">
         <article>
-            <form id="category-form" action="/creatures/category/:category" method="post">
-                <label for="creature-category" class="bigger">Looking just one type of monster?</label>
+            <form id="category-form" action="/creatures/category/" method="post">
+                <label for="creature-category">Looking just one type of monster?</label>
                 <select id="creature-category" name="category">
                     <option value="constructs">Constructs</option>
                     <option value="dragonkin">Dragonkin</option>
-                    <option value="eldritch horror">Eldritch Horror</option>
+                    <option value="eldritch-horror">Eldritch Horror</option>
                     <option value="giant">Giant</option>
                     <option value="magical-beast">Magical Beast</option>
                     <option value="outsider">Outsider</option>
                     <option value="plants">Plants</option>
                     <option value="undead">Undead</option>
                 </select>
-                <button type="submit" id="find-them-button">Find Them</button>   </form>
+                <button type="submit" id="find-them-button">Find Them</button>
+            </form>
         </article>
+
+        <script>
+            function updateAction(form) {
+                const select = form.querySelector('#creature-category');
+                const selectedValue = select.value;
+                form.action = `/creatures/category/${selectedValue}`;
+            }
+        </script>
 
   
         <article>

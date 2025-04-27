@@ -5,7 +5,7 @@
     <nav><%- include('../partials/_navBar') %></nav>
     <main class="overImage">
         <article>
-            <p>As our explorers discover new locations, we document their findings.</p>
+            <p>As our explorers discover new locations, we document their findings.  Be the first to add an entry from your city!</p>
             <ul>
                 <% locations.sort((a, b) => {
                     return a.city.toLowerCase().localeCompare(b.city.toLowerCase());
@@ -19,6 +19,7 @@
                     </li>
                 <% }); %>
             </ul>
+        </article>
         <%- include('../partials/_footer') %>
         
     </main>

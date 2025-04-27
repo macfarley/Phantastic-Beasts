@@ -6,27 +6,33 @@
 
 <main class="overImage">
     <article>
-        <label for="creature-category">Looking just one type of monster?</label>
-        <select id="creature-category" name="category">
-            <option value="constructs">Constructs</option>
-            <option value="dragonkin">Dragonkin</option>
-            <option value="eldritch horror">Eldritch Horror</option>
-            <option value="giant">Giant</option>
-            <option value="magical-beast">Magical Beast</option>
-            <option value="outsider">Outsider</option>
-            <option value="plants">Plants</option>
-            <option value="undead">Undead</option>
-        </select>
-        <button type="button" id="find-them-button">Find Them</button>
+        <form id="category-form" action="/creatures/category/" method="post">
+            <label for="creature-category">Looking just one type of monster?</label>
+            <select id="creature-category" name="category">
+                <option value="constructs">Constructs</option>
+                <option value="dragonkin">Dragonkin</option>
+                <option value="eldritch-horror">Eldritch Horror</option>
+                <option value="giant">Giant</option>
+                <option value="magical-beast">Magical Beast</option>
+                <option value="outsider">Outsider</option>
+                <option value="plants">Plants</option>
+                <option value="undead">Undead</option>
+            </select>
+            <button type="submit" id="find-them-button">Find Them</button>
+        </form>
     </article>
     <article>
-        <h1>These Beasts are Called <%= category %></h1>
+        <h1>These Beasts are Called <%= category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') + 's' %></h1>
 
-        <ul>
+        <% if (Array.isArray(creatureNames)) { %>
+            <ul>
             <% creatureNames.forEach(name => { %>
                 <li><a href="/creatures/species/<%= name.replace(/\s+/g, '') %>"><%= name %></a></li>
             <% }); %>
-        </ul>
+            </ul>
+        <% } else if (typeof creatureNames === 'string') { %>
+            <p><%= creatureNames %></p>
+        <% } %>
     </article>
     <%- include('../partials/_footer') %>
 </main>
