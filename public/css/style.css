@@ -56,7 +56,7 @@ article {
   flex-direction: column;
 
   @media (max-width: 900px) {
-    width: 100%;
+    max-width: 90vw;
     padding: 5%;
   }
 }
