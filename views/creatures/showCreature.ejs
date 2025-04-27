@@ -15,8 +15,12 @@
                     <li><%= note.charAt(0).toUpperCase() + note.slice(1) %></li>
                 <% }); %>
             </ul>
-        </article>
-        <%- include('../partials/_footer') %>
+
+            <% if (user.role === 'admin') { %>
+                <a href="/creatures/species/<%= name %>/edit" class="btn btn-primary">Edit this Creature</a>
+            <% } %>
+
+            </article>    <%- include('../partials/_footer') %>
         
     </main>
 </body>

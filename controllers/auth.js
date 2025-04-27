@@ -74,7 +74,8 @@ router.post("/sign-in", async (req, res) => {
 // There is a user AND they had the correct password. Time to make a session!
   req.session.user = {
     username: userInDatabase.username,
-    _id: userInDatabase._id
+    _id: userInDatabase._id,
+    role: userInDatabase.role
   };
 
 

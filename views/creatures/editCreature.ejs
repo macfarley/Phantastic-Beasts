@@ -1,0 +1,101 @@
+    <%- include('../partials/_header') %>
+    <title>Edit Creature Details</title>
+</head>
+<body>
+    <%- include('../partials/_navBar') %>
+    <main class="overImage">
+        <article>
+            <h1>Edit Creature Details</h1>
+            <form action="/creatures/<%= name %>?_method=PUT" method="POST">
+                <p><%= name %></p>
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="constructs" <%= category === 'constructs' ? 'selected' : '' %>>Constructs</option>
+                    <option value="dragonkin" <%= category === 'dragonkin' ? 'selected' : '' %>>Dragonkin</option>
+                    <option value="eldritch-horror" <%= category === 'eldritch-horror' ? 'selected' : '' %>>Eldritch Horror</option>
+                    <option value="giant" <%= category === 'giant' ? 'selected' : '' %>>Giant</option>
+                    <option value="magical-beast" <%= category === 'magical-beast' ? 'selected' : '' %>>Magical Beast</option>
+                    <option value="outsider" <%= category === 'outsider' ? 'selected' : '' %>>Outsider</option>
+                    <option value="plants" <%= category === 'plants' ? 'selected' : '' %>>Plants</option>
+                    <option value="undead" <%= category === 'undead' ? 'selected' : '' %>>Undead</option>
+                </select>
+                <fieldset>
+                    <legend>Size:</legend>
+                    <label>
+                        <input type="checkbox" name="sizes" value="tiny" <%= sizes.includes('tiny') ? 'checked' : '' %>>
+                        Tiny
+                    </label>
+                    <label>
+                        <input type="checkbox" name="sizes" value="small" <%= sizes.includes('small') ? 'checked' : '' %>>
+                        Small
+                    </label>
+                    <label>
+                        <input type="checkbox" name="sizes" value="medium" <%= sizes.includes('medium') ? 'checked' : '' %>>
+                        Medium
+                    </label>
+                    <label>
+                        <input type="checkbox" name="sizes" value="large" <%= sizes.includes('large') ? 'checked' : '' %>>
+                        Large
+                    </label>
+                    <label>
+                        <input type="checkbox" name="sizes" value="huge" <%= sizes.includes('huge') ? 'checked' : '' %>>
+                        Huge
+                    </label>
+                    <label>
+                        <input type="checkbox" name="sizes" value="gargantuan" <%= sizes.includes('gargantuan') ? 'checked' : '' %>>
+                        Gargantuan
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Habitats:</legend>
+                    <label>
+                        <input type="checkbox" name="habitats" value="coastal" <%= habitats.includes('coastal') ? 'checked' : '' %>>
+                        Coastal
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="desert" <%= habitats.includes('desert') ? 'checked' : '' %>>
+                        Desert
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="forest" <%= habitats.includes('forest') ? 'checked' : '' %>>
+                        Forest
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="grassland" <%= habitats.includes('grassland') ? 'checked' : '' %>>
+                        Grassland
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="hills" <%= habitats.includes('hills') ? 'checked' : '' %>>
+                        Hills
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="mountain" <%= habitats.includes('mountain') ? 'checked' : '' %>>
+                        Mountain
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="ocean" <%= habitats.includes('ocean') ? 'checked' : '' %>>
+                        Ocean
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="swamp" <%= habitats.includes('swamp') ? 'checked' : '' %>>
+                        Swamp
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="underground" <%= habitats.includes('underground') ? 'checked' : '' %>>
+                        Underground
+                    </label>
+                    <label>
+                        <input type="checkbox" name="habitats" value="urban" <%= habitats.includes('urban') ? 'checked' : '' %>>
+                        Urban
+                    </label>
+                </fieldset>
+                <button type="submit">Save Changes</button>
+            </form>    
+            <form action="/creatures/species/name?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this creature?');"></form>
+                <button type="submit" class="delete-button">Delete this Creature</button>
+            </form>
+        </article>
+        <%- include('../partials/_footer') %>
+    </main>
+</body>
+</html>

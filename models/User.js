@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   class: {
     type: String,
     required: true,
-    enum: ["Bard", "Barbarian", "Druid", "Ranger", "Wizard"] // Restrict class to specific values
+    enum: ["Bard", "Barbarian", "Cleric", "Druid", "Fighter", "Paladin", "Ranger", "Rogue", "Wizard"] // Restrict class to specific values
   },
   homeTown: {
     type: mongoose.Schema.Types.ObjectId,

@@ -65,6 +65,15 @@ router.post("/category/", async (req, res) => {
     }
 });
 // Here is where i'll put routes for admins to edit or delete Creatures
-
+//fetch edit page
+router.get("/species/:species/edit", async (req, res) => {
+    const species = req.params.species;
+    if (!req.session.user || req.session.user.role !== "admin") {
+        return res.status(403).send("Access denied. Admins only.");
+    }
+    res.render('creatures/editCreature.ejs', {name: species, category: '', sizes: [], habitats: [], notes: []});
+});
+//PUT edits into Creature object
+router.put
 
 module.exports = router;
