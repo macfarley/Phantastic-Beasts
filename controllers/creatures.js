@@ -74,6 +74,47 @@ router.get("/species/:species/edit", async (req, res) => {
     res.render('creatures/editCreature.ejs', {name: species, category: '', sizes: [], habitats: [], notes: []});
 });
 //PUT edits into Creature object
-router.put
+router.put('/species/:species/edit', async (req, res) =>{
+    const species = req.params.species
+    try {
+        // Look up the creature in the database
+        const creature = await Creature.findOne({ name: species });
+        if (!creature) {
+            return res.status(404).send("Creature not found");
+        }
+
+        // Update category with the new value
+        if (req.body.category) {
+            creature.category = req.body.category;
+        }
+
+        // Update habitats: add the new value if it's not already present
+        if (req.body.habitats && Array.isArray(req.body.habitats)) {
+            req.body.habitats.forEach(habitat => {
+                if (!creature.habitat.includes(habitat)) {
+                    creature.habitat.push(habitat);
+                }
+            });
+        }
+
+        // Update sizes: add the new value if it's not already present
+        if (req.body.sizes && Array.isArray(req.body.sizes)) {
+            req.body.sizes.forEach(size => {
+                if (!creature.size.includes(size)) {
+                    creature.size.push(size);
+                }
+            });
+        }
+
+        // Save the updated Creature model
+        await Creature.save();
+
+        // Redirect back to the creature's page
+        res.redirect(`/creatures/species/${species}`);
+    } catch (err) {
+        console.error("Error updating creature:", err);
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 module.exports = router;
