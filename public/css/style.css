@@ -60,6 +60,9 @@ article {
     padding: 5%;
   }
 }
+.wide {
+  max-width: fit-content;
+}
 section {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 tiles wide */
@@ -102,7 +105,11 @@ h6 {
 p {
   font-size: 1rem;
 }
-
+form {
+  gap: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
 
 
 /* Used in forms to keep inputs from crowding. */
@@ -111,7 +118,6 @@ textarea { display:block;}
 .textbox { 
   padding: 5%;
   width: 90%;
-  
 }
 .separate{
   text-align: left;

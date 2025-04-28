@@ -6,17 +6,16 @@
 
     <main class="overImage">
       
-        <article>
+        <article class="wide">
           <h1>Register with the Guild to see the Beastiary</h1>
           <form action="/auth/sign-up" method="POST">
-            <article>
               <div class="separate">
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" required />
               </div>
 
               <div class="separate">
-                <label for="password">Password (at least 8 characters, no spaces. letters and numbers):</label>
+                <label for="password">Password (at least 8 characters, no spaces.):</label>
                 <input type="password" name="password" id="password" minlength="8" pattern="^\S+$" required />
               </div>
 
@@ -103,17 +102,11 @@
                   <option value="wisconsin">Wisconsin</option>
                   <option value="wyoming">Wyoming</option>
                 </select>
-              </div>
 
               <div class="separate">
-                <label for="admin">Admin?:</label>
-                <input type="checkbox" name="admin" id="admin" />
+              <button type="submit">Register</button>
               </div>
 
-              <div class="separate">
-                <button type="submit">Register</button>
-              </div>
-            </article>
           </form>
         </article>  
     <%- include('../partials/_footer') %>
