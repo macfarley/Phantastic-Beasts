@@ -2,4 +2,18 @@
     <h1>About this site</h1>
     <p>Copyright 2025 ExtraG Data Solutions. Author: Macfarley</p>
     <p>Feel free to make a copy and improve this site on <a href="https://github.com/macfarley/Phantastic-Beasts">Github</a>.</p>
+    <p>
+        Having trouble viewing the page? 
+        <button id="easyToReadToggle" class="button" onclick="toggleEasyToReadMode(this);">
+            Enable Easy-to-Read Mode
+        </button>
+        <script>
+            function toggleEasyToReadMode(button) {
+            document.body.classList.toggle('easyToRead');
+            button.textContent = document.body.classList.contains('easyToRead') 
+                ? 'Disable Easy-to-Read Mode' 
+                : 'Enable Easy-to-Read Mode';
+            }
+        </script>
+    </p>
 </article>

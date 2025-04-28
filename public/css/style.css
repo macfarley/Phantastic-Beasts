@@ -277,3 +277,16 @@ textarea { display:block;}
     text-decoration: none;
   }
 }
+/* Toggle "easy to read mode" when a button is clicked */
+.easyToRead * {
+  font-family: Arial, sans-serif; /* Change font to a more readable one */
+  color: black; /* Set font color to black */
+  background-color: lightblue; /* Set background color to light blue */
+  font-size: 1.2em; /* Increase text size throughout the page */
+  h1, h2, h6 {
+    font-size: 0.8em; /* Reduce header sizes */
+  }
+  .nav-item {
+    font-size: 0.9em; /* Reduce navigation item size */
+  }
+}
