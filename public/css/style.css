@@ -189,7 +189,9 @@ textarea { display:block;}
   justify-content: center;
   align-items: center;
 }
-
+.white {
+  color: antiquewhite;
+}
 #menu-toggle {
   display: none;
 }
