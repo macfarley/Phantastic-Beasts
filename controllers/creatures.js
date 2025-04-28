@@ -116,5 +116,19 @@ router.put('/species/:species/edit', async (req, res) =>{
         res.status(500).send("Internal Server Error");
     }
 })
+//DELETE creature from the edit page
+router.delete('/species/:species', async (req, res) => {
+    const species = req.params.species;
+    try {
+        const creature = await Creature.findOneAndDelete({ name: species });
+        if (!creature) {
+            return res.status(404).send("Creature not found");
+        }
+        res.status(200).send('Creature deleted successfully. <a href="/">Return to Home</a>');
+    } catch (err) {
+        console.error("Error deleting creature:", err);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 module.exports = router;
