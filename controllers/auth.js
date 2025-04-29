@@ -22,7 +22,6 @@ router.post("/sign-up", async (req, res) => {
     if (userInDatabase) {
       return res.status(406).send("Username already taken.");
     }
-    const passwordRegex = /^[a-zA-Z0-9]{8,}$/;
     const passwordRegex = /^(?!\d+$)(?!.*[<>@#]).{8,}$/;
     if (!passwordRegex.test(req.body.password)) {
       return res.status(406).send("Password must be at least 8 characters long, cannot contain <, >, @, #, and cannot be all numbers.");
