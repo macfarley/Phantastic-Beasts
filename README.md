@@ -1,4 +1,5 @@
 # 🐉 Phantastic Beasts and Where We Found Them
+![Deployed Site Screenshot](/public/images/deployedsitescreenshotPB.png)
 
 **Phantastic Beasts and Where We Found Them** is a crowd-sourced monster spotter's guide that matches mythical species to real-world locations. Users can log their sightings, view beast reports from around the world, and keep all their cryptid-hunting notes in one place.
 
