@@ -117,7 +117,7 @@ router.put('/species/:species/edit', async (req, res) =>{
     }
 })
 //DELETE creature from the edit page
-router.delete('/species/:species', async (req, res) => {
+router.delete('/species/:species/edit', async (req, res) => {
     const species = req.params.species;
     try {
         const creature = await Creature.findOneAndDelete({ name: species });
