@@ -82,3 +82,37 @@ Fork the repo, make your changes, and open a pull request!
 MIT License — feel free to fork, clone, and conjure your own version.
 Special thanks to: phoenix icon by icon8
 https://fonts.google.com/specimen/Qwigley/license
+
+## 🛠️ Local Setup
+
+Follow these steps to set up the app on your local machine:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/macfarley/Phantastic-Beasts.git
+   cd Phantastic-Beasts
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**:
+   Create a `.env` file in the root directory and add the following:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   SESSION_SECRET=your_session_secret
+   PORT=3000 # Optional, defaults to 3000
+   ```
+
+4. **Start the MongoDB Server**:
+   Ensure you have a running MongoDB instance. You can use a local MongoDB server or a cloud service like MongoDB Atlas.
+
+5. **Run the App**:
+   ```bash
+   npm start
+   ```
+
+6. **Access the App**:
+   Open your browser and navigate to `http://localhost:3000`.
