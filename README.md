@@ -116,3 +116,14 @@ Follow these steps to set up the app on your local machine:
 
 6. **Access the App**:
    Open your browser and navigate to `http://localhost:3000`.
+
+## 🛠️ Coming Soon: Geocaching Adventure Mode
+
+We are planning to expand **Phantastic Beasts and Where We Found Them** into a real-world geocaching game! Here's what we envision:
+
+- **Geocaching Mechanics**: Users will seed the playground with physical items like boxes, painted rocks, or stickers tagged with fantasy creatures and locations.
+- **Interactive Maps**: Integration with mapping APIs to display geocache locations and allow users to navigate to them.
+- **Gamification**: Points, badges, and leaderboards to encourage participation.
+- **Community Features**: Social sharing, challenges, and user-generated hints for geocaches.
+
+Interested in contributing to this magical adventure? Fork the repo, share your ideas, or open a pull request to help bring this vision to life!
